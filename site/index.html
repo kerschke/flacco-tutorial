@@ -125,48 +125,76 @@
 <p>The current development version of the R package can be obtained from <a href="https://github.com/kerschke/flacco">GitHub</a>.</p>
 <h2 id="quick-start">Quick start</h2>
 <h3 id="calculation-of-a-simple-feature">Calculation of a simple feature</h3>
-<p>For simple features you typically only need to supply the data that you have at hand. For this, the parameters <code>X</code> and <code>y</code> of the function <code>createFeatureObject</code> are used, as illustrated in the example below.</p>
-<p>The function <code>createFeatureObject</code> creates a <code>FeatureObject</code> instance which holds relevant information about the input data. These instances are always the first argument to any feature-calculating function in <strong>flacco</strong>.</p>
+<p>For simple features you typically only need to supply the data that you have at hand.  For this, the parameters <code>X</code> and <code>y</code> of the function <code>createFeatureObject</code> are used, as illustrated in the example below.</p>
+<p>The function <code>createFeatureObject</code> creates a <code>FeatureObject</code> instance which holds relevant information about the input data.  These instances are always the first argument to any feature-calculating function in <strong>flacco</strong>.</p>
 <pre><code class="r">library(flacco)
 
-## (1) Create a feature object
+## (1) Gather data
 X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
-y = apply(X, 1, function(x) { x^2 })
+y = apply(X, 1, function(x) { sum(x^2) })
+
+## (2) Create a feature object
 feat.object = createFeatureObject(X = x, y = y)
 
-## (2) Have a look at feat.object, if you want to
+## (3) Have a look at feat.object, if you want to
 print(feat.object)
 
-## (3) Compute the meta model features
+## (4) Compute the meta model features
 calculateMetaModel(feat.object)
 </code></pre>
 
-<h3 id="calculation-of-a-simple-feature-that-needs-additional-function-evaluations">Calculation of a simple feature that needs additional function evaluations</h3>
-<p>Some features need to know the original function, so that they can perform further evaluations that are necessary to compute feature values. This is enabled by the <code>FeatureObject</code> which can also hold a function expression.</p>
+<h3 id="calculation-of-a-feature-that-needs-additional-function-evaluations">Calculation of a feature that needs additional function evaluations</h3>
+<p>Some features need to know the original function, so that they can perform further evaluations that are necessary to compute feature values.  This is enabled by the <code>FeatureObject</code> which can also hold a function expression.</p>
 <p>Note that you can also only pass <code>X</code> and <code>fun</code> for the creation of a <code>FeatureObject</code> &#8212; values of <code>y</code> will be derived automatically!</p>
-<p>For example, the <code>calculateConvexity</code> feature function needs to know the original function. But don&#8217;t worry &#8212; if you do not pass the function, <code>calculateConvexity</code> will complain and give you a hint.</p>
+<p>For example, the <code>calculateConvexity</code> feature function needs to know the original function.  But don&#8217;t worry &#8212; if you don&#8217;t pass the function, <code>calculateConvexity</code> will complain and give you a hint.</p>
 <pre><code class="r">library(flacco)
 
-## (1) Create a feature object
+## (1) Gather data (Hint: objective values are not set here!)
 X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
-feat.object = createFeatureObject(X = x, fun = function(x) { x^2 })
 
-## (2) Have a look at feat.object, if you want to
+## (2) Create a feature object
+feat.object = createFeatureObject(X = x, fun = function(x) { sum(x^2) })
+
+## (3) Have a look at feat.object, if you want to
 print(feat.object)
 
-## (3) Compute the convexity features
+## (4) Compute the convexity features
 calculateConvexity(feat.object)
 </code></pre>
 
-<p>The manual of the function typically indicates how many additional evaluations will be needed. In this specific example you may also control how large the generated sample should be:</p>
-<pre><code class="r">## (3.a) Compute the convexity features using a sample of 500, 
+<p>The manual of the function typically indicates how many additional evaluations will be needed.  In this specific example you may also control how large the generated sample should be:</p>
+<pre><code class="r">## (4.a) Compute the convexity features using a sample of 500, 
 ##                instead of the default of 1000
 calculateConvexity(feat.object, control = list(
     convex.nsample = 500
   ))
 </code></pre>
 
-<p>Many functions support passing the <code>control</code> list parameter to configure some details on how features should be computed. However, each function supports different parameters. It is therefore useful to look into the documentation and find out what can be adapted.</p>
+<p>Many functions support passing the <code>control</code> list parameter to configure some details on how features should be computed.  However, each function supports different parameters.  It is therefore useful to look into the documentation and find out what can be adapted.</p>
+<h3 id="calculation-of-a-cell-mapping-feature">Calculation of a cell mapping feature</h3>
+<p>Cell mapping features differ from the others in the fact that they convert a continuous search space into a discretized one.  This is achieved by dividing the entire search space into a grid with a finite amount of cells and assigning each observation to exactly one cell.  Afterwards, the search space is only regarded as a set of discrete cells.</p>
+<p>Consequently, you need to define the grid by setting the number of cells per dimension when creating a <code>FeatureObject</code>, since &#8212; from the perspective of the cell mapping features &#8212; it is part of the input data.  If you don&#8217;t, cell mapping feature functions will abort with an error.</p>
+<pre><code class="r">library(flacco)
+
+## (1) Gather data
+X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
+y = apply(X, 1, function(x) { sum(x^2) })
+
+## (2) Create a feature object
+feat.object = createFeatureObject(X = x, y = y, blocks = c(10, 5, 5, 8, 4))
+
+## (3) Have a look at feat.object, if you want to
+print(feat.object)
+
+## (4) Compute the gradient homogeneity features
+calculateGradientHomogeneity(feat.object)
+</code></pre>
+
+<p>The above example splits into 10 blocks in the first dimension, 5 blocks in the second and third, 8 blocks in the fourth, and 4 blocks in the fifth. If you want the same amount of blocks in every dimension, you can write this more cleanly, defining the cells per dimension implicitly:</p>
+<pre><code class="r">## (2.a) Create a feature object
+feat.object = createFeatureObject(X = x, y = y, blocks = 5)
+</code></pre>
+
 
             </div>
           </div>
