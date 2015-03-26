@@ -1,6 +1,8 @@
 # flacco Tutorial
 
-This tutorial is created using MkDocs. You can see the generated tutorial at 
+This repository contains the GitHub pages contents for the tutorial for [flacco](https://github.com/kerschke/flacco/).
+
+The tutorial is created using MkDocs. You can see the generated tutorial at 
 http://kerschke.github.io/flacco-tutorial/site/.
 
 
