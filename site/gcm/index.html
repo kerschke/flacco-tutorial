@@ -56,17 +56,6 @@
 
     
         
-        <span>Simple Features</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../ela">ELA</a>
-                    
-                </li>
-            
-        
-
-    
-        
         <span>Cell Mapping Features</span>
             
                 <li class="toctree-l1 ">
@@ -81,12 +70,19 @@
                         
                             <li class="toctree-l2"><a href="#generalized-cell-mapping-features">Generalized Cell Mapping Features</a></li>
                             
-                                <li><a class="toctree-l3" href="#standard-features">Standard Features</a></li>
+                        
+                            <li class="toctree-l2"><a href="#gcm-terms">GCM Terms</a></li>
                             
-                                <li><a class="toctree-l3" href="#barrier-trees-based-on-gcm">Barrier Trees, based on GCM</a></li>
+                        
+                            <li class="toctree-l2"><a href="#literature-reference">Literature Reference</a></li>
                             
                         
                         </ul>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../barriertrees">Barrier Trees</a>
                     
                 </li>
             
@@ -98,11 +94,6 @@
             
                 <li class="toctree-l1 ">
                     <a class="" href="../ic">Information Content</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../misc">Miscellaneous</a>
                     
                 </li>
             
@@ -143,8 +134,28 @@
           <div role="main">
             <div class="section">
               <h1 id="generalized-cell-mapping-features">Generalized Cell Mapping Features</h1>
-<h2 id="standard-features">Standard Features</h2>
-<h2 id="barrier-trees-based-on-gcm">Barrier Trees, based on GCM</h2>
+<p>Similar to simple cell mapping (SCM), generalized cell mapping (GCM) discretizes a continuous search space. However, in contrast to SCM, GCM allows each cell to have multiple image cells. Therefore, the GCM model captures all transitioning probabilities between the cells and can be interpreted as an absorbing Markov chain.</p>
+<h1 id="gcm-terms">GCM Terms</h1>
+<ul>
+<li>
+<p><strong>Attractor</strong> / <strong>Periodic cell</strong>
+    refers to a cell that only leads to itself, thus absorbing transitions. This cell corresponds to local optima candidates.</p>
+</li>
+<li>
+<p><strong>Transient cell</strong>
+    refers to a cell that is not periodic. Therefore, the system will leave these cells with certainty. The terms below can be used to describe transient cells.</p>
+</li>
+<li>
+<p><strong>Uncertain cell</strong>
+    refers to a cell that leads to multiple attractors.</p>
+</li>
+<li>
+<p><strong>Basin</strong>
+    refers to a set of cells that lead to the same attractor.</p>
+</li>
+</ul>
+<h1 id="literature-reference">Literature Reference</h1>
+<p>Kerschke et al. (2014), &#8220;Cell Mapping Techniques for Exploratory Landscape Analysis&#8221;, in EVOLVE-A Bridge between Probability, Set Oriented Numbers, and Evolutionary Computation V, pp. 151&#8212;131 (<a href="http://dx.doi.org/10.1007/978-3-319-07494-8_9">http://dx.doi.org/10.1007/978-3-319-07494-8_9</a>).</p>
 
             </div>
           </div>
@@ -152,7 +163,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ic" class="btn btn-neutral float-right" title="Information Content"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../barriertrees" class="btn btn-neutral float-right" title="Barrier Trees"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../cm" class="btn btn-neutral" title="Simple Cell Mapping"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -184,7 +195,7 @@
             <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
         
       <span><a href="../cm" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="../ic" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span style="margin-left: 15px"><a href="../barriertrees" style="color: #fcfcfc">Next &raquo;</a></span>
     </span>
 </div>
 </body>

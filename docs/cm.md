@@ -1,9 +1,11 @@
 # Simple Cell Mapping Features
 
-## Angle
+The idea behind cell mapping is that a continuous search space 
 
-## Cell Convexity
+# Angle
 
-## Gradient Homogeneity
+# Cell Convexity
 
-## LM Coefficients
+# Gradient Homogeneity
+
+# LM Coefficients

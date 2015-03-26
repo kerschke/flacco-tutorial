@@ -3,10 +3,9 @@ repo_url: https://github.com/kerschke/flacco
 pages:
 - [index.md, "flacco"]
 - [quickstart.md, "Introduction", "Quick Start"]
-- [ela.md, "Simple Features", "ELA"]
 - [cm.md, "Cell Mapping Features", "Simple Cell Mapping"]
 - [gcm.md, "Cell Mapping Features", "Generalized Cell Mapping"]
+- [barriertrees.md, "Cell Mapping Features", "Barrier Trees"]
 - [ic.md, "Extended Features", "Information Content"]
-- [misc.md, "Extended Features", "Miscellaneous"]
 theme: readthedocs
 markdown_extensions: [smartypants]
