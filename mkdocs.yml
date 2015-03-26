@@ -8,3 +8,4 @@ pages:
 - [ic.md, "Extended Features", "Information Content"]
 - [misc.md, "Extended Features", "Miscellaneous"]
 theme: readthedocs
+markdown_extensions: [smartypants]
