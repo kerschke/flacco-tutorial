@@ -2,6 +2,7 @@ site_name: flacco Tutorial
 repo_url: https://github.com/kerschke/flacco
 pages:
 - [index.md, "flacco"]
+- [quickstart.md, "Introduction", "Quick Start"]
 - [ela.md, "Simple Features", "ELA"]
 - [cm.md, "Cell Mapping Features", "Simple Cell Mapping"]
 - [gcm.md, "Cell Mapping Features", "Generalized Cell Mapping"]
