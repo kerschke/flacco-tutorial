@@ -122,18 +122,49 @@
 <p>This tutorial introduces you to the calculation of exploratory landscape analysis (ELA) features using the <a href="https://github.com/kerschke/flacco"><strong>flacco</strong> R package</a>.</p>
 <p>The current development version of the R package can be obtained from <a href="https://github.com/kerschke/flacco">GitHub</a>.</p>
 <h2 id="quick-start">Quick start</h2>
+<h3 id="calculation-of-a-simple-feature">Calculation of a simple feature</h3>
+<p>For simple features you typically only need to supply the data that you have at hand. For this, the parameters <code>X</code> and <code>y</code> of the function <code>createFeatureObject</code> are used, as illustrated in the example below.</p>
+<p>The function <code>createFeatureObject</code> creates a <code>FeatureObject</code> instance which holds relevant information about the input data. These instances are always the first argument to any feature-calculating function in <strong>flacco</strong>.</p>
 <pre><code class="r">library(flacco)
-data(iris)
 
-## (1) a
+## (1) Create a feature object
+X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
+y = apply(X, 1, function(x) { x^2 })
+feat.object = createFeatureObject(X = x, y = y)
+
+## (2) Have a look at feat.object, if you want to
+print(feat.object)
+
+## (3) Compute the meta model features
+calculateMetaModel(feat.object)
 </code></pre>
 
-<script type="text/js">
-$( document ) .ready(function() {
-    hljs.initHighlightingOnLoad();
-});
-</script>
+<h3 id="calculation-of-a-simple-feature-that-needs-additional-function-evaluations">Calculation of a simple feature that needs additional function evaluations</h3>
+<p>Some features need to know the original function, so that they can perform further evaluations that are necessary to compute feature values. This is enabled by the <code>FeatureObject</code> which can also hold a function expression.</p>
+<p>Note that you can also only pass <code>X</code> and <code>fun</code> for the creation of a <code>FeatureObject</code> &#8212; values of <code>y</code> will be derived automatically!</p>
+<p>For example, the <code>calculateConvexity</code> feature function needs to know the original function. But don&#8217;t worry &#8212; if you do not pass the function, <code>calculateConvexity</code> will complain and give you a hint.</p>
+<pre><code class="r">library(flacco)
 
+## (1) Create a feature object
+X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
+feat.object = createFeatureObject(X = x, fun = function(x) { x^2 })
+
+## (2) Have a look at feat.object, if you want to
+print(feat.object)
+
+## (3) Compute the convexity features
+calculateConvexity(feat.object)
+</code></pre>
+
+<p>The manual of the function typically indicates how many additional evaluations will be needed. In this specific example you may also control how large the generated sample should be:</p>
+<pre><code class="r">## (3.a) Compute the convexity features using a sample of 500, 
+##                instead of the default of 1000
+calculateConvexity(feat.object, control = list(
+    convex.nsample = 500
+  ))
+</code></pre>
+
+<p>Many functions support passing the <code>control</code> list parameter to configure some details on how features should be computed. However, each function supports different parameters. It is therefore useful to look into the documentation and find out what can be adapted.</p>
 
             </div>
           </div>

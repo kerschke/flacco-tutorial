@@ -35,6 +35,8 @@ Some features need to know the original function, so that they can perform furth
 
 Note that you can also only pass `X` and `fun` for the creation of a `FeatureObject` -- values of `y` will be derived automatically!
 
+For example, the `calculateConvexity` feature function needs to know the original function. But don't worry -- if you do not pass the function, `calculateConvexity` will complain and give you a hint.
+
 ```{r}
 library(flacco)
 
@@ -45,8 +47,19 @@ feat.object = createFeatureObject(X = x, fun = function(x) { x^2 })
 ## (2) Have a look at feat.object, if you want to
 print(feat.object)
 
-## (2) Compute the meta model features
-calculateMetaModel(feat.object)
+## (3) Compute the convexity features
+calculateConvexity(feat.object)
 ```
 
-The manual of the function typically indicates how many additional evaluations will be needed.
+The manual of the function typically indicates how many additional evaluations will be needed. In this specific example you may also control how large the generated sample should be:
+
+```{r}
+## (3.a) Compute the convexity features using a sample of 500, 
+##                instead of the default of 1000
+calculateConvexity(feat.object, control = list(
+    convex.nsample = 500
+  ))
+```
+
+Many functions support passing the `control` list parameter to configure some details on how features should be computed. However, each function supports different parameters. It is therefore useful to look into the documentation and find out what can be adapted.
+
