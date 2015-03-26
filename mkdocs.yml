@@ -2,4 +2,4 @@ site_name: flacco Tutorial
 repo_url: https://github.com/kerschke/flacco
 pages:
 - [index.md, flacco]
-theme: flatly
+theme: readthedocs
