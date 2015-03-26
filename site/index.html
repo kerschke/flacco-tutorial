@@ -134,7 +134,7 @@ X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
 y = apply(X, 1, function(x) { sum(x^2) })
 
 ## (2) Create a feature object
-feat.object = createFeatureObject(X = x, y = y)
+feat.object = createFeatureObject(X = X, y = y)
 
 ## (3) Have a look at feat.object, if you want to
 print(feat.object)
@@ -153,7 +153,7 @@ calculateMetaModel(feat.object)
 X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
 
 ## (2) Create a feature object
-feat.object = createFeatureObject(X = x, fun = function(x) { sum(x^2) })
+feat.object = createFeatureObject(X = X, fun = function(x) { sum(x^2) })
 
 ## (3) Have a look at feat.object, if you want to
 print(feat.object)
@@ -181,7 +181,7 @@ X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
 y = apply(X, 1, function(x) { sum(x^2) })
 
 ## (2) Create a feature object
-feat.object = createFeatureObject(X = x, y = y, blocks = c(10, 5, 5, 8, 4))
+feat.object = createFeatureObject(X = X, y = y, blocks = c(10, 5, 5, 8, 4))
 
 ## (3) Have a look at feat.object, if you want to
 print(feat.object)
@@ -192,7 +192,7 @@ calculateGradientHomogeneity(feat.object)
 
 <p>The above example splits into 10 blocks in the first dimension, 5 blocks in the second and third, 8 blocks in the fourth, and 4 blocks in the fifth. If you want the same amount of blocks in every dimension, you can write this more cleanly, defining the cells per dimension implicitly:</p>
 <pre><code class="r">## (2.a) Create a feature object
-feat.object = createFeatureObject(X = x, y = y, blocks = 5)
+feat.object = createFeatureObject(X = X, y = y, blocks = 5)
 </code></pre>
 
 

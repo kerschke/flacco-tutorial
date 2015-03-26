@@ -20,7 +20,7 @@ X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
 y = apply(X, 1, function(x) { sum(x^2) })
 
 ## (2) Create a feature object
-feat.object = createFeatureObject(X = x, y = y)
+feat.object = createFeatureObject(X = X, y = y)
 
 ## (3) Have a look at feat.object, if you want to
 print(feat.object)
@@ -46,7 +46,7 @@ library(flacco)
 X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
 
 ## (2) Create a feature object
-feat.object = createFeatureObject(X = x, fun = function(x) { sum(x^2) })
+feat.object = createFeatureObject(X = X, fun = function(x) { sum(x^2) })
 
 ## (3) Have a look at feat.object, if you want to
 print(feat.object)
@@ -81,7 +81,7 @@ X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
 y = apply(X, 1, function(x) { sum(x^2) })
 
 ## (2) Create a feature object
-feat.object = createFeatureObject(X = x, y = y, blocks = c(10, 5, 5, 8, 4))
+feat.object = createFeatureObject(X = X, y = y, blocks = c(10, 5, 5, 8, 4))
 
 ## (3) Have a look at feat.object, if you want to
 print(feat.object)
@@ -94,5 +94,5 @@ The above example splits into 10 blocks in the first dimension, 5 blocks in the 
 
 ```{r}
 ## (2.a) Create a feature object
-feat.object = createFeatureObject(X = x, y = y, blocks = 5)
+feat.object = createFeatureObject(X = X, y = y, blocks = 5)
 ``` 
