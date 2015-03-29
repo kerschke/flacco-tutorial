@@ -10,7 +10,7 @@ Please only edit files below `docs/`. The remaining contents are generated autom
 ## Installing mkdocs
 ```{bash}
 # install python, e.g. using apt-get install python
-# install pip, e.g. using apt-get install pip
+# install pip, e.g. using apt-get install python-pip
 pip install mkdocs
 pip install mdx_smartypants
 ```
