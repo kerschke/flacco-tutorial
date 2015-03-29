@@ -87,9 +87,6 @@
                             <li class="toctree-l2"><a href="#information-content-based-features">Information Content-Based Features</a></li>
                             
                         
-                            <li class="toctree-l2"><a href="#icofis-features">ICoFiS Features</a></li>
-                            
-                        
                             <li class="toctree-l2"><a href="#literature-reference">Literature Reference</a></li>
                             
                         
@@ -134,9 +131,13 @@
           <div role="main">
             <div class="section">
               <h1 id="information-content-based-features">Information Content-Based Features</h1>
-<h1 id="icofis-features">ICoFiS Features</h1>
+<p>In the Information Content of Fitness Sequences (ICoFiS) approach, the information content of a continuous landscape, i.e. smoothness, ruggedness, or neutrality, are quantified.
+While common analysis methods were able to calculate the information content of discrete landscapes, the ICoFiS approach provides an adaptation to continuous landscapes that accounts e.g. for variable step sizes in random walk sampling.</p>
+<p>This method quantifies the changes in fitness between neighbours while accounting for the distance between two neighbours in the continuous space. Abstracting from the actual values of change, the landscape is transformed into a symbol sequence, indicating whether a positive, negative, or neutral change was performed between to values.</p>
+<p>Afterwards, every two consecutive symbols compose a block in the fitness landscape. The information content is then derived from the observed probabilities of all blocks that are composed of two different symbols (e.g., a change from positive to negative or from neutral to positive).</p>
+<p>As a further measure, the partial information content is proposed. It is calculated from a modified symbol sequence that omits any neutral changes and repeated symbols. However, the authors (see below) state that the partial information content does not yield much additional information for the increased calculation complexity. This measure is therefore disabled by default in this package. If you want to calculate it nevertheless, pass <code>ic.calculate_partial = TRUE</code> as a control parameter to <code>calculateInformationContent</code>.</p>
 <h1 id="literature-reference">Literature Reference</h1>
-<p>Munoz et al. (2015), &#8220;Exploratory Landscape Analysis of Continuous Space Optimization Problems Using Information Content&#8221;, in IEEE Transactions on Evolutionary Computation (19:1), pp. 74&#8212;87 (<a href="http://dx.doi.org/10.1109/TEVC.2014.2302006">http://dx.doi.org/10.1109/TEVC.2014.2302006</a>).</p>
+<p>Muñoz et al. (2015), &#8220;Exploratory Landscape Analysis of Continuous Space Optimization Problems Using Information Content&#8221;, in IEEE Transactions on Evolutionary Computation (19:1), pp. 74&#8212;87 (<a href="http://dx.doi.org/10.1109/TEVC.2014.2302006">http://dx.doi.org/10.1109/TEVC.2014.2302006</a>).</p>
 
             </div>
           </div>

@@ -134,7 +134,9 @@
           <div role="main">
             <div class="section">
               <h1 id="generalized-cell-mapping-features">Generalized Cell Mapping Features</h1>
-<p>Similar to simple cell mapping (SCM), generalized cell mapping (GCM) discretizes a continuous search space. However, in contrast to SCM, GCM allows each cell to have multiple image cells. Therefore, the GCM model captures all transitioning probabilities between the cells and can be interpreted as an absorbing Markov chain.</p>
+<p>Generalized cell mapping (GCM) discretizes a continuous search space in a fashion similar to <a href="../cm">simple cell mapping (SCM)</a>. However, in contrast to SCM, GCM allows each cell to have multiple image cells. Therefore, the GCM model captures all transitioning probabilities between the cells and can be interpreted as an absorbing Markov chain.</p>
+<p>For each cell, a representative objective function value is chosen. Consequently, the cell mapping abstracts from the original function evaluations and reduces the number of values to at most one per cell.</p>
+<p>Three approaches are used for finding the representative value for each cell: <code>min</code>, <code>mean</code>, and <code>near</code>. In the <code>near</code> approach, the representative value is the one that is closest to a cell&#8217;s center. In the <code>mean</code> approach, all values that are located in one cell are averaged to create the representative value of that cell. For the <code>min</code> approach, the minimum of one cell&#8217;s values is used as the representative value. Note that, for the last two approaches,  no representative value for a cell can be found if no values belong to that cell.</p>
 <h1 id="gcm-terms">GCM Terms</h1>
 <ul>
 <li>
