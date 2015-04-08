@@ -56,10 +56,21 @@
 
     
         
+        <span>Classical ELA Features</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../ela">Classical Exploratory Landscape Analysis</a>
+                    
+                </li>
+            
+        
+
+    
+        
         <span>Cell Mapping Features</span>
             
                 <li class="toctree-l1 ">
-                    <a class="" href="../cm">Simple Cell Mapping</a>
+                    <a class="" href="../cm">Cell Mapping</a>
                     
                 </li>
             
@@ -79,6 +90,16 @@
         
         <span>Extended Features</span>
             
+                <li class="toctree-l1 ">
+                    <a class="" href="../base">Basic Features</a>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../dispersion">Dispersion Features</a>
+                    
+                </li>
+            
                 <li class="toctree-l1 current">
                     <a class="current" href=".">Information Content</a>
                     
@@ -91,6 +112,16 @@
                             
                         
                         </ul>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../nbf">Nearest Better Features</a>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../pca">Principal Component Features</a>
                     
                 </li>
             
@@ -137,7 +168,7 @@ While common analysis methods were able to calculate the information content of 
 <p>Afterwards, every two consecutive symbols compose a block in the fitness landscape. The information content is then derived from the observed probabilities of all blocks that are composed of two different symbols (e.g., a change from positive to negative or from neutral to positive).</p>
 <p>As a further measure, the partial information content is proposed. It is calculated from a modified symbol sequence that omits any neutral changes and repeated symbols. However, the authors (see below) state that the partial information content does not yield much additional information for the increased calculation complexity. This measure is therefore disabled by default in this package. If you want to calculate it nevertheless, pass <code>ic.calculate_partial = TRUE</code> as a control parameter to <code>calculateInformationContent</code>.</p>
 <h1 id="literature-reference">Literature Reference</h1>
-<p>Muñoz et al. (2015), &#8220;Exploratory Landscape Analysis of Continuous Space Optimization Problems Using Information Content&#8221;, in IEEE Transactions on Evolutionary Computation (19:1), pp. 74&#8212;87 (<a href="http://dx.doi.org/10.1109/TEVC.2014.2302006">http://dx.doi.org/10.1109/TEVC.2014.2302006</a>).</p>
+<p>Mu&ntilde;oz, M. et al. (2015), &#8220;Exploratory Landscape Analysis of Continuous Space Optimization Problems Using Information Content&#8221;, in IEEE Transactions on Evolutionary Computation (19:1), pp. 74&#8212;87 (<a href="http://dx.doi.org/10.1109/TEVC.2014.2302006">http://dx.doi.org/10.1109/TEVC.2014.2302006</a>).</p>
 
             </div>
           </div>
@@ -145,8 +176,10 @@ While common analysis methods were able to calculate the information content of 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../nbf" class="btn btn-neutral float-right" title="Nearest Better Features"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../barriertrees" class="btn btn-neutral" title="Barrier Trees"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../dispersion" class="btn btn-neutral" title="Dispersion Features"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -174,8 +207,8 @@ While common analysis methods were able to calculate the information content of 
         
             <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
         
-      <span><a href="../barriertrees" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../dispersion" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../nbf" style="color: #fcfcfc">Next &raquo;</a></span>
     </span>
 </div>
 </body>
