@@ -52,16 +52,16 @@
                     
                         <ul>
                         
-                            <li class="toctree-l2"><a href="#calculation-of-a-simple-feature">Calculation of a simple feature</a></li>
+                            <li class="toctree-l2"><a href="#calculation-of-a-simple-feature">Calculation of a Simple Feature</a></li>
                             
                         
-                            <li class="toctree-l2"><a href="#calculation-of-more-expensive-features">Calculation of more expensive features</a></li>
+                            <li class="toctree-l2"><a href="#calculation-of-expensive-features">Calculation of Expensive Features</a></li>
                             
                         
-                            <li class="toctree-l2"><a href="#calculation-of-a-cell-mapping-feature">Calculation of a cell mapping feature</a></li>
+                            <li class="toctree-l2"><a href="#calculation-of-a-cell-mapping-feature">Calculation of a Cell Mapping Feature</a></li>
                             
                         
-                            <li class="toctree-l2"><a href="#drawing-explanatory-plots">Drawing explanatory plots</a></li>
+                            <li class="toctree-l2"><a href="#creating-explanatory-plots">Creating Explanatory Plots</a></li>
                             
                         
                         </ul>
@@ -167,7 +167,7 @@
 </div>
           <div role="main">
             <div class="section">
-              <h1 id="calculation-of-a-simple-feature">Calculation of a simple feature</h1>
+              <h1 id="calculation-of-a-simple-feature">Calculation of a Simple Feature</h1>
 <p>For simple features you typically only need to supply the data that you have at hand.  For this, the arguments <code>X</code> and <code>y</code> should be passed towards <code>createFeatureObject</code>, as illustrated in the example below.</p>
 <p>The function <code>createFeatureObject</code> creates a <code>FeatureObject</code> instance which holds relevant information about the input data. These instances are always the first argument to any feature-calculating function in <strong>flacco</strong>.</p>
 <pre><code class="r">library(flacco)
@@ -186,7 +186,7 @@ print(feat.object)
 calculateMetaModel(feat.object)
 </code></pre>
 
-<h1 id="calculation-of-more-expensive-features">Calculation of more expensive features</h1>
+<h1 id="calculation-of-expensive-features">Calculation of Expensive Features</h1>
 <p>Some features need to perform further function evaluations in order to compute the feature values. Therefore, one can pass the function <code>fun</code> to the <code>FeatureObject</code>.</p>
 <p>Note, that it is also possible to only pass <code>X</code> and <code>fun</code> to <code>createFeatureObject</code> &#8212; the values of <code>y</code> will be automatically be computed!</p>
 <p>For example, the <code>calculateConvexity</code> feature function needs to know the original function. But don&#8217;t worry &#8212; if you don&#8217;t pass the function, <code>calculateConvexity</code> will complain and give you a hint.</p>
@@ -215,7 +215,7 @@ calculateConvexity(feat.object, control = list(convex.nsample = 500))
 should be computed using the <code>control</code> list parameter. However, as each
 function supports different parameters it is advisable to have a look into the
 documentation of each function and find out which parameters can be adapted.</p>
-<h1 id="calculation-of-a-cell-mapping-feature">Calculation of a cell mapping feature</h1>
+<h1 id="calculation-of-a-cell-mapping-feature">Calculation of a Cell Mapping Feature</h1>
 <p>Cell mapping features differ from the others in the fact that they convert a
 continuous search space into a discretized one. This is achieved by dividing
 the entire search space into a grid with a finite amount of cells (per
@@ -249,8 +249,8 @@ simplify your input by writing:</p>
 feat.object = createFeatureObject(X = X, y = y, blocks = 5)
 </code></pre>
 
-<h1 id="drawing-explanatory-plots">Drawing explanatory plots</h1>
-<p>Some features come with additional plots that visualize the features or intermediate results.  For example, the mechanics behind the Generalized Cell Mapping approach are sometimes hard to grasp.  For that reason, a plot visualizes a (two-dimensional) grid and indicated the transition probabilities from any cell to its basins using proportional arrows. </p>
+<h1 id="creating-explanatory-plots">Creating Explanatory Plots</h1>
+<p>Some features come with additional plots that visualize the features or intermediate results. For example, the mechanics behind the <a href="../gcm">Generalized Cell Mapping approach</a> are sometimes hard to grasp.  For that reason, a plot visualizes a (two-dimensional) grid and indicated the transition probabilities from any cell to its basins using proportional arrows. </p>
 <pre><code class="r">library(flacco)
 
 ## (1) Create data

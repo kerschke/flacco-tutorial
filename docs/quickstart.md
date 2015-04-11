@@ -1,4 +1,4 @@
-# Calculation of a simple feature
+# Calculation of a Simple Feature
 
 For simple features you typically only need to supply the data that you have at hand.  For this, the arguments `X` and `y` should be passed towards `createFeatureObject`, as illustrated in the example below.
 
@@ -22,7 +22,7 @@ calculateMetaModel(feat.object)
 ```
 
 
-# Calculation of more expensive features
+# Calculation of Expensive Features
 
 Some features need to perform further function evaluations in order to compute the feature values. Therefore, one can pass the function `fun` to the `FeatureObject`.
 
@@ -60,7 +60,7 @@ function supports different parameters it is advisable to have a look into the
 documentation of each function and find out which parameters can be adapted.
 
 
-# Calculation of a cell mapping feature
+# Calculation of a Cell Mapping Feature
 
 Cell mapping features differ from the others in the fact that they convert a
 continuous search space into a discretized one. This is achieved by dividing
@@ -101,9 +101,9 @@ feat.object = createFeatureObject(X = X, y = y, blocks = 5)
 ``` 
 
 
-# Drawing explanatory plots
+# Creating Explanatory Plots
 
-Some features come with additional plots that visualize the features or intermediate results.  For example, the mechanics behind the Generalized Cell Mapping approach are sometimes hard to grasp.  For that reason, a plot visualizes a (two-dimensional) grid and indicated the transition probabilities from any cell to its basins using proportional arrows. 
+Some features come with additional plots that visualize the features or intermediate results. For example, the mechanics behind the [Generalized Cell Mapping approach](gcm.md) are sometimes hard to grasp.  For that reason, a plot visualizes a (two-dimensional) grid and indicated the transition probabilities from any cell to its basins using proportional arrows. 
 
 ```{r}
 library(flacco)

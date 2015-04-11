@@ -85,6 +85,16 @@
                             <li class="toctree-l2"><a href="#gcm-terms">GCM Terms</a></li>
                             
                         
+                            <li class="toctree-l2"><a href="#bla1">bla1</a></li>
+                            
+                                <li><a class="toctree-l3" href="#bla2">bla2</a></li>
+                            
+                        
+                            <li class="toctree-l2"><a href="#bla3">bla3</a></li>
+                            
+                                <li><a class="toctree-l3" href="#bla4">bla4</a></li>
+                            
+                        
                             <li class="toctree-l2"><a href="#literature-reference">Literature Reference</a></li>
                             
                         
@@ -165,28 +175,44 @@
           <div role="main">
             <div class="section">
               <h1 id="generalized-cell-mapping-features">Generalized Cell Mapping Features</h1>
-<p>Generalized cell mapping (GCM) discretizes a continuous search space in a fashion similar to <a href="../cm">simple cell mapping (SCM)</a>. However, in contrast to SCM, GCM allows each cell to have multiple image cells. Therefore, the GCM model captures all transitioning probabilities between the cells and can be interpreted as an absorbing Markov chain.</p>
-<p>For each cell, a representative objective function value is chosen. Consequently, the cell mapping abstracts from the original function evaluations and reduces the number of values to at most one per cell.</p>
-<p>Three approaches are used for finding the representative value for each cell: <code>min</code>, <code>mean</code>, and <code>near</code>. In the <code>near</code> approach, the representative value is the one that is closest to a cell&#8217;s center. In the <code>mean</code> approach, all values that are located in one cell are averaged to create the representative value of that cell. For the <code>min</code> approach, the minimum of one cell&#8217;s values is used as the representative value. Note that, for the last two approaches,  no representative value for a cell can be found if no values belong to that cell.</p>
+<p><em>Generalized cell mapping (GCM)</em> discretizes the continuous search space
+in the same way, as described in the <a href="../cm">previous section (Cell Mapping)</a>.
+However, in contrast to the previous section, the GCM approach is based on
+transition probabilities between the cells and interprets them by the use of
+(absorbing) Markov chains.</p>
+<p>For each cell, a representative objective function value is chosen.
+Consequently, the cell mapping abstracts from the original function evaluations
+and reduces the number of values to (at most) one per cell.</p>
+<p>Three approaches are used for finding the representative value for each cell: minimum (<code>min</code>), average (<code>mean</code>), and nearest prototype (<code>near</code>). In the <code>near</code> approach, the representative value is the one that is closest to a cell&#8217;s center. In the <code>mean</code> approach, all values that are located in one cell are averaged to create the representative value of that cell. For the <code>min</code> approach, the minimum of one cell&#8217;s values is used as the representative value. Note that in case of an empty cell, only the <code>near</code> approach is able to find a representative value for that cell.</p>
 <h1 id="gcm-terms">GCM Terms</h1>
+<p><strong>Attractor</strong> / <strong>Periodic cell</strong>:</p>
 <ul>
-<li>
-<p><strong>Attractor</strong> / <strong>Periodic cell</strong>
-    refers to a cell that only leads to itself, thus absorbing transitions. This cell corresponds to local optima candidates.</p>
-</li>
-<li>
-<p><strong>Transient cell</strong>
-    refers to a cell that is not periodic. Therefore, the system will leave these cells with certainty. The terms below can be used to describe transient cells.</p>
-</li>
-<li>
-<p><strong>Uncertain cell</strong>
-    refers to a cell that leads to multiple attractors.</p>
-</li>
-<li>
-<p><strong>Basin</strong>
-    refers to a set of cells that lead to the same attractor.</p>
-</li>
+<li>refers to a cell that only leads to itself and thus absorbs transitions</li>
+<li>candidate for a local optima</li>
 </ul>
+<p><strong>Transient cell</strong>:</p>
+<ul>
+<li>refers to a cell that is not periodic and therefore, the system will leave these cells with a given certainty (&gt; 0)</li>
+<li>the terms below can be used to further classify transient cells</li>
+</ul>
+<p><strong>Uncertain cell</strong>:</p>
+<ul>
+<li>refers to a cell that leads to multiple attractors</li>
+</ul>
+<p><strong>Basin</strong>:</p>
+<ul>
+<li>refers to a set of cells that lead to the same attractor</li>
+</ul>
+<h1 id="bla1">bla1</h1>
+<p>sdf</p>
+<h2 id="bla2">bla2</h2>
+<p>adsaf</p>
+<h1 id="bla3">bla3</h1>
+<p>sfs</p>
+<h2 id="bla4">bla4</h2>
+<p>saf</p>
+<h3 id="bla3_1">bla3</h3>
+<p>sdfsd</p>
 <h1 id="literature-reference">Literature Reference</h1>
 <p>Kerschke, P. et al. (2014), &#8220;Cell Mapping Techniques for Exploratory Landscape Analysis&#8221;, in EVOLVE-A Bridge between Probability, Set Oriented Numbers, and Evolutionary Computation V, pp. 151&#8212;131, Springer (<a href="http://dx.doi.org/10.1007/978-3-319-07494-8_9">http://dx.doi.org/10.1007/978-3-319-07494-8_9</a>).</p>
 

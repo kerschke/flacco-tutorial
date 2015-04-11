@@ -59,11 +59,18 @@ x<sub>2</sub> and infer the corresponding decision.
 
 # Gradient Homogeneity
 
-For every point within a cell's sample, we find the nearest neighbor and compute the individual, normalized difference vector, which is always rotated so that it is pointing to the worse point. Then, we compute the length of the vector sum of the individual vectors amd divide it by the maximal possible vector length (equals the number of points due to normalization). For completely randomly distributed objective values, the fraction should be around 0 (vectors pointing in all directions), for a strong trend the values should approach 1.0 (all vectors point into the same direction).
+For every point within a cell's sample, the nearest neighbor is identified and
+afterwards, the normalized vectors, which are always rotated towards the better
+points, are computed. Then, all normalized vectors are summed up and divided by
+the maximal possible vector length (i.e. the number of points). In case of
+rather randomly distributed objective values, the fraction should be close to
+zero, because that would mean that the vectors are pointing in different
+directions. In case of a strong trend the value should be close to one (i.e.,
+all vectors point into the same direction).
 
-From the individual values for each cell, we obtain two features by computing the mean and the standard deviation over all cells, taking only the homogeneity within each cell into account. Simple unimodal functions shall thus generate very high mean values.
-
-Since interactions between cells are ignored, i.e. these features are computed locally per cell, these features are independent from the search space dimensionality.
+Based on the individual values of each cell, we then obtain two features by
+computing the mean and the standard deviation over all cells. Simple unimodal
+functions shall thus generate very high mean values.
 
 ![Illustration of the idea of Gradient Homogeneity](gradienthomogeneity.svg)
 
