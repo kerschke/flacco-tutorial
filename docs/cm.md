@@ -1,26 +1,57 @@
 # Cell Mapping Features
 
-The idea behind cell mapping is that a continuous search space is partitioned in every dimension, thus achieving a discretization of the search space into cells.
-This discretization of a sample into a number of cells, with several
-points in each cell, opens up possibilities to measure global structure and multimodality of an optimization problem.
+The idea of *cell mapping* is that a continuous search space is partitioned in
+every dimension, thus achieving a discretization of the original search space
+into cells. This discretization of a sample into a number of cells, with
+several points per cell, allows for an improved estimation of properties such
+as the *global structure* and *multimodality* of an optimization problem.
 
 # Angle
 
-The best and worst values within the cell might return some insight of the landscape. If they lie in opposite directions it indicates a trend within the cell. In that case the angle between the vectors from cell center to worst value and cell center to best value would be close to 180◦. Two features are obtained by aggregating the angles of all cells from the grid using the mean and the standard deviation.
+The initial idea of the *angle features* is that the best and worst values
+within the cells might return some insight of the underlying function's
+landscape. If those two observations lie in opposite directions, it indicates a
+trend within the cell. In that case the angle between the vectors from cell
+center to worst value and cell center to best value would be close to 180&deg;.
+By aggregating the angles of all cells from the grid (using the mean and the
+standard deviation), two features are provided.
 
-Furthermore, the standard deviations in the lengths of the two vectors are used as additional features. In case of simple functions as the sphere function, the variation should be low as the majority of the cells have similar distances, because they usually lie close to the borders of the cells. In very multimodal functions, the variation should be high as cells with local optima result in contrary distances (short distances of the best values and long distances of the worst values) compared to cells without any local optima.
+Furthermore, the standard deviation of the lengths of the two above-mentioned
+vectors are used as additional features. In case of simple functions (such as
+the sphere function), the variation should be low as the majority of the cells
+should have similar distances -- due to the fact that they usually lie close to
+the borders of the cells. In case of very multimodal functions, the variation
+should be rather high as cells with local optima result in contrary distances
+(short distances of the best values and long distances of the worst values)
+compared to cells without any local optima.
 
-Since interactions between cells are ignored, i.e. these features are computed locally per cell, these features are independent from the search space dimensionality.
+Since interactions between cells are ignored, i.e. these features are computed
+locally per cell, the features are considered to be independent from the
+search space dimensionality.
 
 ![Illustration of the idea of Angle](angle.svg)
 
 (Inspired by Kerschke, P. et al., 2014)
 
+
 # Cell Convexity
 
-Over all possible combinations of three neighbouring cells within the grid, the (weak or strong) concavity or convexity is computed. Per default, only horizontally and vertically neighbouring cells are considered. By passing `diag = TRUE` as a function parameter to `calculateCellConvexity`, diagonal neighbourhood is considered as well.
+For these feature sets, all possible combinations of three (linearly)
+neighbouring cells within the grid are computed. Per default, only horizontally
+and vertically neighbouring cells are considered. By passing `diag = TRUE` as a
+parameter to `calculateCellConvexity`, diagonally neighbouring cells are
+considered as well.
 
-Given the function evaluations of three neighbouring cells, this feature is calculated by drawing a line between f(x<sub>1</sub>) and f(x<sub>3</sub>) and determining the placement of f(x<sub>2</sub>) in relation to this line. The figure below illustrates the resulting decision of whether a combination indicates convexity or concavity: Place the value of f(x<sub>2</sub>) above x<sub>2</sub> and infer the corresponding decision.
+In all of those cases, each of the three cells is represented by a single
+prototype. Those are then used to approximate the concavity or convexity of the
+landscape.
+
+Given the function evaluations of the three neighbouring cells, this feature is
+calculated by computing the convex-combination between f(x<sub>1</sub>) and
+f(x<sub>3</sub>) and comparing it to the value of f(x<sub>2</sub>).
+The figure below illustrates the resulting decision, i.e. whether a combination
+indicates convexity or concavity: Place the value of f(x<sub>2</sub>) above
+x<sub>2</sub> and infer the corresponding decision.
 
 ![Illustration of the decision for or against (strong) convexity](convexity.svg)
 
