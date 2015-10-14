@@ -169,12 +169,12 @@
             <div class="section">
               <h1 id="calculation-of-a-simple-feature">Calculation of a Simple Feature</h1>
 <p>For simple features you typically only need to supply the data that you have at hand.  For this, the arguments <code>X</code> and <code>y</code> should be passed towards <code>createFeatureObject</code>, as illustrated in the example below.</p>
-<p>The function <code>createFeatureObject</code> creates a <code>FeatureObject</code> instance which holds relevant information about the input data. These instances are always the first argument to any feature-calculating function in <strong>flacco</strong>.</p>
+<p>The function <code>createFeatureObject</code> creates a <code>FeatureObject</code> instance, which holds relevant information about the input data. These instances are always the first argument to any feature-calculating function in <strong>flacco</strong>.</p>
 <pre><code class="r">library(flacco)
 
 ## (1) Create some example-data
-X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
-y = apply(X, 1, function(x) sum(x^2))
+X = createInitialDesign(n.obs = 500, dim = 2)
+y = apply(X, 1, function(x) sum(sin(x) * x^2 + (x - 0.5)^3))
 
 ## (2) Compute the feature object
 feat.object = createFeatureObject(X = X, y = y)
@@ -182,18 +182,18 @@ feat.object = createFeatureObject(X = X, y = y)
 ## (3) Have a look at feat.object
 print(feat.object)
 
-## (4) Calculate a feature set, e.g. the meta model features
-calculateMetaModel(feat.object)
+## (4) Calculate a feature set, e.g. the ELA meta model features
+calculateFeatureSet(feat.object, set = &quot;ela_meta&quot;)
 </code></pre>
 
 <h1 id="calculation-of-expensive-features">Calculation of Expensive Features</h1>
 <p>Some features need to perform further function evaluations in order to compute the feature values. Therefore, one can pass the function <code>fun</code> to the <code>FeatureObject</code>.</p>
 <p>Note, that it is also possible to only pass <code>X</code> and <code>fun</code> to <code>createFeatureObject</code> &#8212; the values of <code>y</code> will be automatically be computed!</p>
-<p>For example, the <code>calculateConvexity</code> feature function needs to know the original function. But don&#8217;t worry &#8212; if you don&#8217;t pass the function, <code>calculateConvexity</code> will complain and give you a hint.</p>
+<p>For example, the feature set <code>"ela_conv"</code> needs to know the original function. But don&#8217;t worry &#8212; if you don&#8217;t pass the function, <code>calculateFeatureSet</code> will complain and give you a hint.</p>
 <pre><code class="r">library(flacco)
 
 ## (1) Create data (note that objective values are not set here!)
-X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
+X = createInitialDesign(n.obs = 2000, dim = 5)
 
 ## (2) Compute the feature object
 feat.object = createFeatureObject(X = X, fun = function(x) sum(x^2))
@@ -201,35 +201,25 @@ feat.object = createFeatureObject(X = X, fun = function(x) sum(x^2))
 ## (3) Have a look at feat.object
 print(feat.object)
 
-## (4) Calculate the convexity features
-calculateConvexity(feat.object)
+## (4) Calculate the ELA convexity features
+calculateFeatureSet(feat.object, set = &quot;ela_conv&quot;)
 </code></pre>
 
-<p>The manual of the function typically indicates how many additional evaluations will be needed. The following example shows you, how you could control the size of the generated sample:</p>
+<p>Usually, you find more information on the exact number of additional function evaluations within the documentation of <code>calculateFeatureSet</code>. The following example shows you, how you could control the size of the generated sample:</p>
 <pre><code class="r">## Calculate the convexity features using a sample of size 500, 
 ## instead of the default of 1000.
-calculateConvexity(feat.object, control = list(convex.nsample = 500))
+calculateFeatureSet(feat.object, set = &quot;ela_conv&quot;, control = list(ela_conv.nsample = 500))
 </code></pre>
 
-<p>A lot of our functions allow to configure certain details on how features
-should be computed using the <code>control</code> list parameter. However, as each
-function supports different parameters it is advisable to have a look into the
-documentation of each function and find out which parameters can be adapted.</p>
+<p>A lot of our functions allow to configure certain details on how features should be computed using the <code>control</code> list parameter. However, as each function supports different parameters it is advisable to have a look into the corresponding documentation <code>?calculateFeatureSet</code>.</p>
 <h1 id="calculation-of-a-cell-mapping-feature">Calculation of a Cell Mapping Feature</h1>
-<p>Cell mapping features differ from the others in the fact that they convert a
-continuous search space into a discretized one. This is achieved by dividing
-the entire search space into a grid with a finite amount of cells (per
-dimension) and assigning each observation to exactly one cell. Afterwards, the
-search space is only regarded as a set of discrete cells.</p>
-<p>Consequently, you need to define the grid by setting the number of cells per
-dimension when creating a <code>FeatureObject</code>, since &#8212; from the perspective of
-the cell mapping features &#8212; it is part of the input data. If you don&#8217;t provide
-them, the attempt of computing a cell mapping feature will abort with an error.</p>
+<p>Cell mapping features differ from the others in the fact that they convert a continuous search space into a discretized one. This is achieved by dividing the entire search space into a grid with a finite amount of cells (per dimension) and assigning each observation to exactly one cell. Afterwards, the search space is only regarded as a set of discrete cells.</p>
+<p>Consequently, you need to define the grid by specifying the number of cells per dimension when creating a <code>FeatureObject</code>. If you don&#8217;t provide them, the attempt of computing a cell mapping feature will abort with an error.</p>
 <pre><code class="r">library(flacco)
 
 ## (1) Create data
-X = t(replicate( n = 2000, expr = runif(n = 5, min = -10, max = 10) ))
-y = apply(X, 1, function(x) sum(x^2))
+X = createInitialDesign(n.obs = 2000, dim = 5)
+y = rowSums(X^2)
 
 ## (2) Compute a feature object
 feat.object = createFeatureObject(X = X, y = y, blocks = c(10, 5, 5, 8, 4))
@@ -238,31 +228,27 @@ feat.object = createFeatureObject(X = X, y = y, blocks = c(10, 5, 5, 8, 4))
 print(feat.object)
 
 ## (4) Calculate cell mapping features, e.g. the gradient homogeneity features
-calculateGradientHomogeneity(feat.object)
+calculateFeatureSet(feat.object, set = &quot;cm_grad&quot;)
 </code></pre>
 
-<p>The above example splits the data into 10 blocks in the first dimension, 5
-blocks in the second and third, 8 blocks in the fourth, and 4 blocks in the
-fifth. If you always want the same amount of blocks in every dimension, you can
-simplify your input by writing:</p>
+<p>The above example splits the data into 10 blocks in the first dimension, 5 blocks in the second and third, 8 blocks in the fourth, and 4 blocks in the fifth. If you always want the same amount of blocks in every dimension, you can simplify your input:</p>
 <pre><code class="r">## Compute the feature object
 feat.object = createFeatureObject(X = X, y = y, blocks = 5)
 </code></pre>
 
 <h1 id="creating-explanatory-plots">Creating Explanatory Plots</h1>
-<p>Some features come with additional plots that visualize the features or intermediate results. For example, the mechanics behind the <a href="../gcm">Generalized Cell Mapping approach</a> are sometimes hard to grasp.  For that reason, a plot visualizes a (two-dimensional) grid and indicated the transition probabilities from any cell to its basins using proportional arrows. </p>
+<p>Some features come with additional plots that visualize the features or intermediate results. For example, the mechanics behind the <a href="../gcm">Generalized Cell Mapping approach</a> are sometimes hard to grasp. For that reason, a plot visualizes a (two-dimensional) grid and indicated the transition probabilities from any cell to its basins using proportional arrows. </p>
 <pre><code class="r">library(flacco)
 
 ## (1) Create data
-X = replicate(n = 2000, expr = runif(n = 2, min = -10, max = 10))
-X = t(X)
-y = apply(X, 1, function(x) { 
-  x[1]^4 + 100 * (x[1] - 3)^3 + 1000 * x[1] + x[2] 
-})
+X = createInitialDesign(n.obs = 8000, dim = 2,
+  control = list(init_design.lower = -10, init_design.upper = 5))
+f = function(x) x[1]^4 + 100 * (x[1] - 3)^3 + 1000 * x[1] + x[2]
+y = apply(X, 1, f)
 
 ## (2) Compute a feature object
 feat.object = createFeatureObject(X = X, y = y, 
-    lower = -10, upper = 10, blocks = 10)
+    lower = -10, upper = 5, blocks = 10)
 
 ## (3) Have a look at feat.object
 print(feat.object)
@@ -272,8 +258,10 @@ print(feat.object)
 ## show them side-by-side
 par(mfrow = c(1, 3))
 
-## (5) Calculate the gradient homogeneity features
-calculateGCMFeatures(feat.object, control = list(gcm.plot = TRUE))
+## (5) Plot the Cell Mappings
+plotCellMapping(feat.object, control = list(gcm.approach = &quot;min&quot;))
+plotCellMapping(feat.object, control = list(gcm.approach = &quot;mean&quot;))
+plotCellMapping(feat.object, control = list(gcm.approach = &quot;near&quot;))
 </code></pre>
 
 
