@@ -237,33 +237,45 @@ feat.object = createFeatureObject(X = X, y = y, blocks = 5)
 </code></pre>
 
 <h1 id="creating-explanatory-plots">Creating Explanatory Plots</h1>
-<p>Some features come with additional plots that visualize the features or intermediate results. For example, the mechanics behind the <a href="../gcm">Generalized Cell Mapping approach</a> are sometimes hard to grasp. For that reason, a plot visualizes a (two-dimensional) grid and indicated the transition probabilities from any cell to its basins using proportional arrows. </p>
-<pre><code class="r">library(flacco)
+<p>Some features come with additional plots that visualize the features or intermediate results. For example, the mechanics behind the <a href="../gcm">Generalized Cell Mapping approach</a> are sometimes hard to grasp. For that reason, a plot visualizes a (two-dimensional) grid and indicated the transition probabilities from any cell to its basins using proportional arrows.
+Also, the <a href="../barriertrees">Barrier Tree</a> usually become more clear, when visualizing them.</p>
+<pre><code class="r">library(smoof)
+library(flacco)
 
 ## (1) Create data
-X = createInitialDesign(n.obs = 8000, dim = 2,
-  control = list(init_design.lower = -10, init_design.upper = 5))
-f = function(x) x[1]^4 + 100 * (x[1] - 3)^3 + 1000 * x[1] + x[2]
+X = expand.grid(seq(0, 1, length.out = 50), seq(0, 1, length.out = 50))
+f = smoof::makeBBOBFunction(dimension = 2, fid = 17, iid = 9)
 y = apply(X, 1, f)
 
 ## (2) Compute a feature object
-feat.object = createFeatureObject(X = X, y = y, 
-    lower = -10, upper = 5, blocks = 10)
+feat.object = createFeatureObject(X = X, y = y, fun = f, blocks = c(10, 10))
 
-## (3) Have a look at feat.object
-print(feat.object)
+## (3) Now, one could create various explanatory plots
 
-## (4) Since three plots will be created -- one for each of the three
-## approaches (Minimum, Average and Nearest Prototype) -- you might want to
-## show them side-by-side
-par(mfrow = c(1, 3))
+## (3a) Visualize the figure in a 3D perspective/surface plot
+persp(matrix(y, nrow = 50), shade = 0.1, theta = 35, phi = 25,
+  border = &quot;lightgrey&quot;, zlab = &quot;f(x, y)&quot;, xlab = &quot;x&quot;, ylab = &quot;y&quot;, col = &quot;pink&quot;)
 
-## (5) Plot the Cell Mappings
-plotCellMapping(feat.object, control = list(gcm.approach = &quot;min&quot;))
-plotCellMapping(feat.object, control = list(gcm.approach = &quot;mean&quot;))
+## (3b) Based on a combination of 'persp' and the barrier tree idea,
+## one now can produce 3D plots of the barrier trees
+ctrl = list(gcm.approach = &quot;near&quot;, bt.persp_border = &quot;lightgrey&quot;,
+  bt.persp_theta = 35, bt.persp_phi = 25, bt.color_surface = &quot;pink&quot;,
+  bt.persp_shade = 0.1, bt.persp_ticktype = &quot;simple&quot;,
+  bt.persp_xlab = &quot;x&quot;, bt.persp_ylab = &quot;y&quot;, bt.persp_zlab = &quot;f(x, y)&quot;)
+plotBarrierTree3D(feat.object, control = ctrl)
+
+## (3c) The barrier trees can also be visualized in a 2D plot
+plotBarrierTree2D(feat.object, control = list(gcm.approach = &quot;near&quot;, bt.cm_surface = FALSE))
+
+## (3d) Alternatively, one can plot the cell mappings
 plotCellMapping(feat.object, control = list(gcm.approach = &quot;near&quot;))
 </code></pre>
 
+<p>The following plots represent the figures, which were created by the R-code above.</p>
+<p><img alt="(3a) Perspective / Surface Plot" src="../example_persp.svg" /></p>
+<p><img alt="(3b) 3D Barrier Tree" src="../example_bt_3d.svg" /></p>
+<p><img alt="(3c) 2D Barrier Tree" src="../example_bt_2d.svg" /></p>
+<p><img alt="(3d) Cell Mapping" src="../example_cm.svg" /></p>
 
             </div>
           </div>

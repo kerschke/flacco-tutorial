@@ -1,17 +1,19 @@
 # Generalized Cell Mapping Features
 
-*Generalized cell mapping (GCM)* discretizes the continuous search space
-in the same way, as described in the [previous section (Cell Mapping)](cm.md).
-However, in contrast to the previous section, the GCM approach is based on
-transition probabilities between the cells and interprets them by the use of
-(absorbing) Markov chains.
+*Generalized cell mapping (GCM)* discretizes the continuous search space in the same way, as described in the [previous section (Cell Mapping)](cm.md).
+However, in contrast to the previous section, the GCM approach is based on transition probabilities between the cells and interprets them by making use of (absorbing) Markov chains.
 
-For each cell, a representative objective function value is chosen.
-Consequently, the cell mapping abstracts from the original function evaluations
-and reduces the number of values to (at most) one per cell.
+For each cell, a representative objective function value is chosen. Consequently, the cell mapping abstracts from the original function evaluations and reduces the number of values to (at most) one per cell.
 
-Three approaches are used for finding the representative value for each cell: minimum (`min`), average (`mean`), and nearest prototype (`near`). In the `near` approach, the representative value is the one that is closest to a cell's center. In the `mean` approach, all values that are located in one cell are averaged to create the representative value of that cell. For the `min` approach, the minimum of one cell's values is used as the representative value. Note that in case of an empty cell, only the `near` approach is able to find a representative value for that cell.
+Three approaches are used for finding the representative value for each cell: minimum (`"min"`), average (`"mean"`), and nearest prototype (`"near"`). In the `"near"` approach, the representative value is the one that is closest to a cell's center. In the `"mean"` approach, all values that are located in one cell are averaged to create the representative value of that cell. For the `"min"` approach, the minimum of one cell's values is used as the representative value.
+Note that in case of an empty cell, only the `"near"` approach is able to find a representative value for that cell.
 
+```{r}
+X = createInitialDesign(n.obs = 1200, dim = 3)
+y = rowSums(X^2)
+feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
+calculateFeatureSet(feat.object, set = "gcm")
+```
 
 # GCM Terms
 

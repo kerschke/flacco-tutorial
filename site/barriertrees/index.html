@@ -162,10 +162,10 @@
           <div role="main">
             <div class="section">
               <h1 id="barrier-trees">Barrier Trees</h1>
-<p>After discretizing the search space using <a href="../gcm">generalized cell mapping (GCM)</a> and choosing a representative value for every cell, <code>calculateBarrierTrees</code> calculates barrier trees of the function&#8217;s landscape. </p>
-<p>Since GCM is the basis, all barrier trees are also calculated for all three approaches <code>min</code>, <code>mean</code>, and <code>near</code> (see <a href="../gcm">GCM</a>).</p>
-<p>The idea of barrier trees is to represent the landscape of an optimization function using trees. Every mininum, both local and global, is represented by a leaf in the tree. Other nodes in the tree represent saddle points that connect the minima.</p>
-<p>The features calculated here describe the structure of the resulting barrier tree. This encompasses, among others, the number of leaves, the number of levels, and basin structure.</p>
+<p>After discretizing the search space using <a href="../gcm">generalized cell mapping (GCM)</a> and choosing a representative value for every cell, <em>barrier trees</em> can be a helpful tool for characterizing a function&#8217;s landscape. </p>
+<p>Since GCM is the basis, all barrier trees are also calculated for all three approaches <code>"min"</code>, <code>"mean"</code>, and <code>"near"</code> (see <a href="../gcm">GCM</a>).</p>
+<p>The idea of barrier trees is to represent the landscape of an optimization function using trees. Every mininum &#8212; no matter whether it is a local or global minimum &#8212; is represented by a leaf in the tree. The remaining nodes in the tree represent saddle points, which connect the minima.</p>
+<p>The features calculated here describe the structure of the resulting barrier tree. This encompasses, amongst others, the number of leaves, the number of levels, and the basin structure.</p>
 <h1 id="literature-reference">Literature Reference</h1>
 <p>Flamm, C. et al. (2012), &#8220;Barrier Trees of Degenerate Landscapes&#8221;, in Z. Phys. Chem. (216:2), pp. 155&#8212;173 (<a href="http://dx.doi.org/10.1524/zpch.2002.216.2.155">http://dx.doi.org/10.1524/zpch.2002.216.2.155</a>).</p>
 
