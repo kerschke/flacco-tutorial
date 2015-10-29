@@ -1,9 +1,9 @@
 # flacco Tutorial
 
-This tutorial introduces you to the calculation of exploratory landscape analysis (ELA) features using the [**flacco** R package](https://github.com/kerschke/flacco).
+This tutorial introduces you to the calculation of landscape features using the [**flacco** R package](https://github.com/kerschke/flacco).
 
-The current development version of the R package can be obtained from [GitHub](https://github.com/kerschke/flacco).
+The current version of the package can be downloaded from [CRAN](https://cran.r-project.org/web/packages/flacco/). If you want to use the most recent (eventually not stable) version, you can obtain the developers version from [GitHub](https://github.com/kerschke/flacco).
 
-You can have a look at the [Quick Start](quickstart.md) page to get to know the basics of **flacco**. Or you can check out the other pages of this tutorial which introduce concepts that are specific to the different kinds of features.
+You should have a look at the [Quick Start](quickstart.md) page in order to get to know the basics of **flacco**. If you need more detailed information, you should also check the other pages of this tutorial. They introduce concepts that are specific to the different kinds of features.
 
-**flacco** is developed by the group for [Information Systems and Statistics](https://www.wi.uni-muenster.de/department/groups/statistik/profile) at the Department of Information Systems of the University of Münster.
+If you have any questions or comments on **flacco**, feel free to use the [issue tracker](https://github.com/kerschke/flacco/issues) or [send me an e-mail](kerschke@uni-muenster.de).

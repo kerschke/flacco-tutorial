@@ -28,3 +28,8 @@ svg("example_bt_2d.svg", width = 9, height = 9)
 par(mfrow = c(1, 1), mar = c(1, 1, 1, 1))
 plotBarrierTree2D(feat.object, control = list(gcm.approach = "near", bt.cm_surface = FALSE))
 dev.off()
+
+svg("example_info.svg", width = 9, height = 9)
+par(mfrow = c(1, 1), mar = c(4, 4, 1, 1))
+plotInformationContent(feat.object, control = list(gcm.approach = "near", bt.cm_surface = FALSE))
+dev.off()

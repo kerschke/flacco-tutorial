@@ -64,6 +64,9 @@
                             <li class="toctree-l2"><a href="#creating-explanatory-plots">Creating Explanatory Plots</a></li>
                             
                         
+                            <li class="toctree-l2"><a href="#compute-all-feature-sets-at-once">Compute all Feature Sets at Once</a></li>
+                            
+                        
                         </ul>
                     
                 </li>
@@ -168,34 +171,34 @@
           <div role="main">
             <div class="section">
               <h1 id="calculation-of-a-simple-feature">Calculation of a Simple Feature</h1>
-<p>For simple features you typically only need to supply the data that you have at hand.  For this, the arguments <code>X</code> and <code>y</code> should be passed towards <code>createFeatureObject</code>, as illustrated in the example below.</p>
-<p>The function <code>createFeatureObject</code> creates a <code>FeatureObject</code> instance, which holds relevant information about the input data. These instances are always the first argument to any feature-calculating function in <strong>flacco</strong>.</p>
+<p>If you want to compute any of our features, you will first have to create a feature object. This is an object, which stores all the necessary information, such as the input data and control arguments.
+The easiest way to create a feature object is to pass the arguments <code>X</code> and <code>y</code> to the function <code>createFeatureObject</code>, as illustrated in the example below.</p>
 <pre><code class="r">library(flacco)
 
-## (1) Create some example-data
+## (1) Generate some example data, i.e. create an initial design 'X' consisting
+## of 500 (2D) observations and compute the corresponding objective values 'y':
 X = createInitialDesign(n.obs = 500, dim = 2)
 y = apply(X, 1, function(x) sum(sin(x) * x^2 + (x - 0.5)^3))
 
-## (2) Compute the feature object
+## (2) Create the corresponding feature object:
 feat.object = createFeatureObject(X = X, y = y)
 
-## (3) Have a look at feat.object
+## (3) The feature object already contains some information on your data:
 print(feat.object)
 
-## (4) Calculate a feature set, e.g. the ELA meta model features
+## (4) Calculate a feature set, e.g. the ELA meta model features:
 calculateFeatureSet(feat.object, set = &quot;ela_meta&quot;)
 </code></pre>
 
+<p>In order to find out, which feature sets can be computed, one could call the function <code>listAvailableFeatureSets</code> or have a look into the documentation of <code>calculateFeatureSets</code>. The latter one also contains a list of possible control options of each feature set.</p>
 <h1 id="calculation-of-expensive-features">Calculation of Expensive Features</h1>
-<p>Some features need to perform further function evaluations in order to compute the feature values. Therefore, one can pass the function <code>fun</code> to the <code>FeatureObject</code>.</p>
-<p>Note, that it is also possible to only pass <code>X</code> and <code>fun</code> to <code>createFeatureObject</code> &#8212; the values of <code>y</code> will be automatically be computed!</p>
-<p>For example, the feature set <code>"ela_conv"</code> needs to know the original function. But don&#8217;t worry &#8212; if you don&#8217;t pass the function, <code>calculateFeatureSet</code> will complain and give you a hint.</p>
-<pre><code class="r">library(flacco)
-
-## (1) Create data (note that objective values are not set here!)
+<p>Some feature sets (ELA convexity <code>"ela_conv"</code>, ELA curvature <code>"ela_curv"</code> and ELA local search <code>"ela_local"</code>) need to perform further function evaluations in order to compute the features. In those cases, it is necessary that the function (<code>fun</code>) is part of the feature object.
+But don&#8217;t worry &#8212; if you don&#8217;t pass the function, <code>calculateFeatureSet</code> will complain and give you a hint.</p>
+<p>Note, that it is also possible to pass only <code>X</code> and <code>fun</code> to <code>createFeatureObject</code>, i.e. you do not have to pass <code>y</code>. In that case, the objective values will be computed by <code>createFeatureObject</code>!</p>
+<pre><code class="r">## (1) Create data
 X = createInitialDesign(n.obs = 2000, dim = 5)
 
-## (2) Compute the feature object
+## (2) Compute the feature object (note that we do not set any objective values)
 feat.object = createFeatureObject(X = X, fun = function(x) sum(x^2))
 
 ## (3) Have a look at feat.object
@@ -205,7 +208,7 @@ print(feat.object)
 calculateFeatureSet(feat.object, set = &quot;ela_conv&quot;)
 </code></pre>
 
-<p>Usually, you find more information on the exact number of additional function evaluations within the documentation of <code>calculateFeatureSet</code>. The following example shows you, how you could control the size of the generated sample:</p>
+<p>Usually, you find more information on the parameters and thus on the exact number of additional function evaluations within the documentation of <code>calculateFeatureSet</code>. The following example shows you, how you could control the size of the generated sample:</p>
 <pre><code class="r">## Calculate the convexity features using a sample of size 500, 
 ## instead of the default of 1000.
 calculateFeatureSet(feat.object, set = &quot;ela_conv&quot;, control = list(ela_conv.nsample = 500))
@@ -213,11 +216,9 @@ calculateFeatureSet(feat.object, set = &quot;ela_conv&quot;, control = list(ela_
 
 <p>A lot of our functions allow to configure certain details on how features should be computed using the <code>control</code> list parameter. However, as each function supports different parameters it is advisable to have a look into the corresponding documentation <code>?calculateFeatureSet</code>.</p>
 <h1 id="calculation-of-a-cell-mapping-feature">Calculation of a Cell Mapping Feature</h1>
-<p>Cell mapping features differ from the others in the fact that they convert a continuous search space into a discretized one. This is achieved by dividing the entire search space into a grid with a finite amount of cells (per dimension) and assigning each observation to exactly one cell. Afterwards, the search space is only regarded as a set of discrete cells.</p>
-<p>Consequently, you need to define the grid by specifying the number of cells per dimension when creating a <code>FeatureObject</code>. If you don&#8217;t provide them, the attempt of computing a cell mapping feature will abort with an error.</p>
-<pre><code class="r">library(flacco)
-
-## (1) Create data
+<p>Cell mapping features differ from the others in the fact that they convert the continuous search space into a discretized one. This is achieved by dividing the entire search space into a grid with a finite amount of cells (per dimension). Each observation will then be assigned to exactly one cell. Afterwards, each cell will be represented by one (!) of its observations. So far, we provide 3 types of representatives of a cell. For further details, you should have a look into the pages of <a href="../cm">cell mapping</a> and <a href="../gcm">generalized cell mapping</a>.</p>
+<p>In order to define the grid, you need to specify the number of cells/blocks per dimension when creating a <code>FeatureObject</code>. If you don&#8217;t provide them, the attempt of computing a cell mapping feature will abort with an error.</p>
+<pre><code class="r">## (1) Create data
 X = createInitialDesign(n.obs = 2000, dim = 5)
 y = rowSums(X^2)
 
@@ -231,14 +232,13 @@ print(feat.object)
 calculateFeatureSet(feat.object, set = &quot;cm_grad&quot;)
 </code></pre>
 
-<p>The above example splits the data into 10 blocks in the first dimension, 5 blocks in the second and third, 8 blocks in the fourth, and 4 blocks in the fifth. If you always want the same amount of blocks in every dimension, you can simplify your input:</p>
+<p>The above example splits the data into 10 blocks in the first, 5 blocks in the second and third, 8 blocks in the fourth, and 4 blocks in the fifth dimension. If you always want the same amount of blocks in every dimension, you can even simplify your input:</p>
 <pre><code class="r">## Compute the feature object
 feat.object = createFeatureObject(X = X, y = y, blocks = 5)
 </code></pre>
 
 <h1 id="creating-explanatory-plots">Creating Explanatory Plots</h1>
-<p>Some features come with additional plots that visualize the features or intermediate results. For example, the mechanics behind the <a href="../gcm">Generalized Cell Mapping approach</a> are sometimes hard to grasp. For that reason, a plot visualizes a (two-dimensional) grid and indicated the transition probabilities from any cell to its basins using proportional arrows.
-Also, the <a href="../barriertrees">Barrier Tree</a> usually become more clear, when visualizing them.</p>
+<p>In addition to the features, the package provides plots, which visualize the features (or intermediate steps, which lead to the features). For example, the mechanics behind the <a href="../gcm">generalized cell mapping approach</a> are sometimes hard to grasp. In those cases, a plot, which visualizes the (two-dimensional) grid and indicates the transition probabilities from any cell to its attractor using proportional arrows, could be helpful. Such a plot can be created with the following commands (the corresponding plot is given below the R code).</p>
 <pre><code class="r">library(smoof)
 library(flacco)
 
@@ -250,32 +250,35 @@ y = apply(X, 1, f)
 ## (2) Compute a feature object
 feat.object = createFeatureObject(X = X, y = y, fun = f, blocks = c(10, 10))
 
-## (3) Now, one could create various explanatory plots
+## (3) Plot the corresponding cell mappings
+plotCellMapping(feat.object, control = list(gcm.approach = &quot;near&quot;))
+</code></pre>
 
-## (3a) Visualize the figure in a 3D perspective/surface plot
-persp(matrix(y, nrow = 50), shade = 0.1, theta = 35, phi = 25,
-  border = &quot;lightgrey&quot;, zlab = &quot;f(x, y)&quot;, xlab = &quot;x&quot;, ylab = &quot;y&quot;, col = &quot;pink&quot;)
+<p><img alt="Cell Mapping" src="../example_cm.svg" /></p>
+<p>Similarly, the <a href="../barriertrees">Barrier Tree</a> usually become more clear, when visualizing them. <strong>flacco</strong> allows its users to create 2D and 3D barrier trees. The former one look similar to the aforementioned cellmappings - extended by the branches of the tree.</p>
+<pre><code class="r">## (a) a 2D plot of the barrier trees
+plotBarrierTree2D(feat.object, control = list(gcm.approach = &quot;near&quot;, bt.cm_surface = FALSE))
 
-## (3b) Based on a combination of 'persp' and the barrier tree idea,
-## one now can produce 3D plots of the barrier trees
+## (b) based on a combination of the R function 'persp' and the barrier tree
+## approach, one now can produce 3D plots of the barrier trees
 ctrl = list(gcm.approach = &quot;near&quot;, bt.persp_border = &quot;lightgrey&quot;,
   bt.persp_theta = 35, bt.persp_phi = 25, bt.color_surface = &quot;pink&quot;,
   bt.persp_shade = 0.1, bt.persp_ticktype = &quot;simple&quot;,
   bt.persp_xlab = &quot;x&quot;, bt.persp_ylab = &quot;y&quot;, bt.persp_zlab = &quot;f(x, y)&quot;)
 plotBarrierTree3D(feat.object, control = ctrl)
-
-## (3c) The barrier trees can also be visualized in a 2D plot
-plotBarrierTree2D(feat.object, control = list(gcm.approach = &quot;near&quot;, bt.cm_surface = FALSE))
-
-## (3d) Alternatively, one can plot the cell mappings
-plotCellMapping(feat.object, control = list(gcm.approach = &quot;near&quot;))
 </code></pre>
 
-<p>The following plots represent the figures, which were created by the R-code above.</p>
-<p><img alt="(3a) Perspective / Surface Plot" src="../example_persp.svg" /></p>
-<p><img alt="(3b) 3D Barrier Tree" src="../example_bt_3d.svg" /></p>
-<p><img alt="(3c) 2D Barrier Tree" src="../example_bt_2d.svg" /></p>
-<p><img alt="(3d) Cell Mapping" src="../example_cm.svg" /></p>
+<p><img alt="2D Barrier Tree" src="../example_bt_2d.svg" /></p>
+<p><img alt="3D Barrier Tree" src="../example_bt_3d.svg" /></p>
+<p>Please note, that the barrier tree features currently only work for problems with a 2D decision space. If you try to compute them for higher dimensional problems, you will receive an error.</p>
+<h1 id="compute-all-feature-sets-at-once">Compute all Feature Sets at Once</h1>
+<p>In case you have a feature object, which is a discretized version of a 2D input space and which provides the original function as well, you can compute all available feature sets at once &#8212; using <code>calculateFeatures</code>.</p>
+<pre><code class="r">X = createInitialDesign(n.obs = 1000, dim = 2)
+f = function(x) sum(x^3 * sin(x))
+feat.object = createFeatureObject(X = X, fun = f, blocks = 5)
+features = calculateFeatures(feat.object)
+</code></pre>
+
 
             </div>
           </div>

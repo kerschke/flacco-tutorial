@@ -1,11 +1,12 @@
 # Cell Mapping Features
 
-The idea of *cell mapping* is that a continuous search space is partitioned in every dimension, thus achieving a discretization of the original search space into cells. This discretization of a sample into a number of cells, with several points per cell, allows for an improved estimation of properties such as the *global structure* and *multimodality* of an optimization problem.
+The idea of *cell mapping* is that a continuous search space is partitioned in every dimension and thus achieving a discretization of the original search space into cells. This discretization of the original sample into cells allows the computation of features, which help to characterize the *global structure* or *multimodality* of an optimization problem.
+Based on this approach, three different feature sets can be computed: angle (`"cm_angle"`), convexity (`"cm_conv"`) and gradient homogeneity (`"cm_grad"`).
 
 # Angle
 
 The initial idea of the *angle features* (`"cm_angle"`) is that the best and worst values within the cells might return some insight of the underlying function's landscape. If those two observations lie in opposite directions, it indicates a trend within the cell. In that case the angle between the vectors from cell center to worst value and cell center to best value would be close to 180&deg;.
-By aggregating the angles of all cells from the grid (using the mean and the standard deviation), two features are provided.
+The angles of all cells from the grid will then be aggregated using the mean and the standard deviation.
 
 ```{r}
 X = createInitialDesign(n.obs = 1200, dim = 3)
@@ -34,9 +35,9 @@ feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = "cm_conv")
 ``` 
 
-In all of those cases, each of the three cells is represented by a single prototype. Those are then used to approximate the concavity or convexity of the landscape.
+During the computation of the cell mapping convexity features, only the cells' representatives are considered. Based on those prototypes, the concavity or convexity of the landscape is approximated.
 
-Given the function evaluations of the three neighbouring cells, this feature is calculated by computing the convex-combination between f(x<sub>1</sub>) and f(x<sub>3</sub>) and comparing it to the value of f(x<sub>2</sub>). The figure below illustrates the resulting decision, i.e. whether a combination indicates convexity or concavity: Place the value of f(x<sub>2</sub>) above x<sub>2</sub> and infer the corresponding decision.
+Given the function evaluations of the three neighbouring cells, this feature computes the convex-combination between f(x<sub>1</sub>) and f(x<sub>3</sub>). That value is then compared to the corresponding value of f(x<sub>2</sub>). The figure below illustrates the resulting decision, i.e. whether a combination indicates convexity or concavity. Just place the value of f(x<sub>2</sub>) above x<sub>2</sub> and infer the corresponding decision.
 
 ![Illustration of the decision for or against (strong) convexity](convexity.svg)
 
@@ -44,7 +45,7 @@ Given the function evaluations of the three neighbouring cells, this feature is 
 
 # Gradient Homogeneity
 
-For every point within a cell's sample, the nearest neighbor is identified and afterwards, the normalized vectors, which are always rotated towards the better points, are computed. Then, all normalized vectors are summed up and divided by the maximal possible vector length (i.e. the number of points). In case of rather randomly distributed objective values, the fraction should be close to zero, because that would mean that the vectors are pointing in different directions. In case of a strong trend the value should be close to one (i.e., all vectors point into the same direction).
+For every point within a cell's sample, the nearest neighbor is identified and afterwards, the normalized vectors, which are always rotated towards the better points, are computed. Then, all normalized vectors are summed up and divided by the maximal possible vector length (i.e. the number of points). In case of rather randomly distributed objective values, the fraction should be close to zero as this would indicate vectors, which are pointing in different directions. In case of a strong trend the value should be close to one (i.e., all vectors point into the same direction).
 
 ```{r}
 X = createInitialDesign(n.obs = 1200, dim = 3)
@@ -53,11 +54,10 @@ feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = "cm_grad")
 ``` 
 
-Based on the individual values of each cell, we then obtain two features by computing the mean and the standard deviation over all cells. Simple unimodal functions shall thus generate very high mean values.
+Those values are then aggregated over all cells -- again, using the mean and the standard deviation. Simple unimodal functions shall thus generate very high mean values.
 
 ![Illustration of the idea of Gradient Homogeneity](gradienthomogeneity.svg)
 
 (Inspired by Kerschke, P. et al., 2014)
 
-# Literature Reference
-Kerschke, P. et al. (2014), "Cell Mapping Techniques for Exploratory Landscape Analysis", in EVOLVE-A Bridge between Probability, Set Oriented Numbers, and Evolutionary Computation V, pp. 151--131, Springer ([http://dx.doi.org/10.1007/978-3-319-07494-8_9](http://dx.doi.org/10.1007/978-3-319-07494-8_9)).
+Kerschke, P., Preuss, M., Hernandez, C., Schuetze, O., Sun, J.-Q., Grimme, C., Rudolph, G., Bischl, B., and Trautmann, H. (2014): "Cell Mapping Techniques for Exploratory Landscape Analysis", in: EVOLVE -- A Bridge between Probability, Set Oriented Numbers, and Evolutionary Computation V, pp. 151--131, Springer ([http://dx.doi.org/10.1007/978-3-319-07494-8_9](http://dx.doi.org/10.1007/978-3-319-07494-8_9)).
