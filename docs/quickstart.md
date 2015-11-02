@@ -104,7 +104,7 @@ feat.object = createFeatureObject(X = X, y = y, fun = f, blocks = c(10, 10))
 plotCellMapping(feat.object, control = list(gcm.approach = "near"))
 ```
 
-![Cell Mapping](example_cm.svg)
+![Cell Mapping](example_cm.png)
 
 
 Similarly, the [Barrier Tree](barriertrees.md) usually become more clear, when visualizing them. **flacco** allows its users to create 2D and 3D barrier trees. The former one look similar to the aforementioned cellmappings - extended by the branches of the tree.

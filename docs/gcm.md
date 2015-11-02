@@ -17,23 +17,54 @@ calculateFeatureSet(feat.object, set = "gcm")
 
 # GCM Terms
 
+The following example will create a Generalized Cell Mapping of the 17th BBOB function (Schaffer's F7) based on the nearest prototype approach.
+
+```{r}
+library(smoof)
+library(flacco)
+
+## (1) Create data
+X = expand.grid(seq(0, 1, length.out = 50), seq(0, 1, length.out = 50))
+f = smoof::makeBBOBFunction(dimension = 2, fid = 17, iid = 9)
+y = apply(X, 1, f)
+
+## (2) Compute a feature object
+feat.object = createFeatureObject(X = X, y = y, fun = f, blocks = c(10, 10))
+
+## (3) Plot the corresponding cell mappings
+plotCellMapping(feat.object, control = list(gcm.approach = "near"))
+```
+
+![Cell Mapping](example_cm.png)
+
+As you can see within the plot, the cell mapping indicates 62 uncertain cells (the grey boxes) and 8 attractor cells (the black boxes), whose basins (colored areas) have a size of 1 to 19 cells (when counting the attractors towards the basins). All of these numbers (as well as some more characteristics) can be found among the corresponding features:
+
+```{r}
+## calculate the corresponding GCM features
+calculateFeatureSet(feat.object, set = "gcm", control = list(gcm.approaches = "near"))
+```
+
+For a complete overview of the features, please refer to the documentation of `calculateFeatureSet`.
+
+# GCM Terms
+
 **Attractor** / **Periodic cell**:
 
-- refers to a cell that only leads to itself and thus absorbs transitions
+- a cell, which only leads to itself and thus absorbs transitions
 - candidate for a local optima
 
 **Transient cell**:
 
-- refers to a cell that is not periodic and therefore, the system will leave these cells with a given certainty (> 0)
+- a cell that is not periodic and therefore, the system will leave these cells with a given certainty (> 0)
 - the terms below can be used to further classify transient cells
 
 **Uncertain cell**:
 
-- refers to a cell that leads to multiple attractors
+- a cell, which leads to multiple attractors
 
 **Basin**:
 
-- refers to a set of cells that lead to the same attractor
+- a set of cells, which lead to the same attractor
 
 # Literature Reference
 Kerschke, P. et al. (2014), "Cell Mapping Techniques for Exploratory Landscape Analysis", in EVOLVE-A Bridge between Probability, Set Oriented Numbers, and Evolutionary Computation V, pp. 151--131, Springer ([http://dx.doi.org/10.1007/978-3-319-07494-8_9](http://dx.doi.org/10.1007/978-3-319-07494-8_9)).
