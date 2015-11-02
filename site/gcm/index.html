@@ -85,6 +85,9 @@
                             <li class="toctree-l2"><a href="#gcm-terms">GCM Terms</a></li>
                             
                         
+                            <li class="toctree-l2"><a href="#gcm-terms_1">GCM Terms</a></li>
+                            
+                        
                             <li class="toctree-l2"><a href="#literature-reference">Literature Reference</a></li>
                             
                         
@@ -177,23 +180,47 @@ calculateFeatureSet(feat.object, set = &quot;gcm&quot;)
 </code></pre>
 
 <h1 id="gcm-terms">GCM Terms</h1>
+<p>The following example will create a Generalized Cell Mapping of the 17th BBOB function (Schaffer&#8217;s F7) based on the nearest prototype approach.</p>
+<pre><code class="r">library(smoof)
+library(flacco)
+
+## (1) Create data
+X = expand.grid(seq(0, 1, length.out = 50), seq(0, 1, length.out = 50))
+f = smoof::makeBBOBFunction(dimension = 2, fid = 17, iid = 9)
+y = apply(X, 1, f)
+
+## (2) Compute a feature object
+feat.object = createFeatureObject(X = X, y = y, fun = f, blocks = c(10, 10))
+
+## (3) Plot the corresponding cell mappings
+plotCellMapping(feat.object, control = list(gcm.approach = &quot;near&quot;))
+</code></pre>
+
+<p><img alt="Cell Mapping" src="../example_cm.png" /></p>
+<p>As you can see within the plot, the cell mapping indicates 62 uncertain cells (the grey boxes) and 8 attractor cells (the black boxes), whose basins (colored areas) have a size of 1 to 19 cells (when counting the attractors towards the basins). All of these numbers (as well as some more characteristics) can be found among the corresponding features:</p>
+<pre><code class="r">## calculate the corresponding GCM features
+calculateFeatureSet(feat.object, set = &quot;gcm&quot;, control = list(gcm.approaches = &quot;near&quot;))
+</code></pre>
+
+<p>For a complete overview of the features, please refer to the documentation of <code>calculateFeatureSet</code>.</p>
+<h1 id="gcm-terms_1">GCM Terms</h1>
 <p><strong>Attractor</strong> / <strong>Periodic cell</strong>:</p>
 <ul>
-<li>refers to a cell that only leads to itself and thus absorbs transitions</li>
+<li>a cell, which only leads to itself and thus absorbs transitions</li>
 <li>candidate for a local optima</li>
 </ul>
 <p><strong>Transient cell</strong>:</p>
 <ul>
-<li>refers to a cell that is not periodic and therefore, the system will leave these cells with a given certainty (&gt; 0)</li>
+<li>a cell that is not periodic and therefore, the system will leave these cells with a given certainty (&gt; 0)</li>
 <li>the terms below can be used to further classify transient cells</li>
 </ul>
 <p><strong>Uncertain cell</strong>:</p>
 <ul>
-<li>refers to a cell that leads to multiple attractors</li>
+<li>a cell, which leads to multiple attractors</li>
 </ul>
 <p><strong>Basin</strong>:</p>
 <ul>
-<li>refers to a set of cells that lead to the same attractor</li>
+<li>a set of cells, which lead to the same attractor</li>
 </ul>
 <h1 id="literature-reference">Literature Reference</h1>
 <p>Kerschke, P. et al. (2014), &#8220;Cell Mapping Techniques for Exploratory Landscape Analysis&#8221;, in EVOLVE-A Bridge between Probability, Set Oriented Numbers, and Evolutionary Computation V, pp. 151&#8212;131, Springer (<a href="http://dx.doi.org/10.1007/978-3-319-07494-8_9">http://dx.doi.org/10.1007/978-3-319-07494-8_9</a>).</p>

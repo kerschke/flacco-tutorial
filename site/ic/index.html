@@ -165,8 +165,29 @@
 <p>In the Information Content of Fitness Sequences (ICoFiS) approach, the information content of a continuous landscape, i.e. smoothness, ruggedness, or neutrality, are quantified.
 While common analysis methods were able to calculate the information content of discrete landscapes, the ICoFiS approach provides an adaptation to continuous landscapes that accounts e.g. for variable step sizes in random walk sampling.</p>
 <p>This method quantifies the changes in fitness between neighbours while accounting for the distance between two neighbours in the continuous space. Abstracting from the actual values of change, the landscape is transformed into a symbol sequence, indicating whether a positive, negative, or neutral change was performed between to values.</p>
-<p>Afterwards, every two consecutive symbols compose a block in the fitness landscape. The information content is then derived from the observed probabilities of all blocks that are composed of two different symbols (e.g., a change from positive to negative or from neutral to positive).</p>
-<p>As a further measure, the partial information content is proposed. It is calculated from a modified symbol sequence that omits any neutral changes and repeated symbols. However, the authors (see below) state that the partial information content does not yield much additional information for the increased calculation complexity. This measure is therefore disabled by default in this package. If you want to calculate it nevertheless, pass <code>ic.calculate_partial = TRUE</code> as a control parameter to <code>calculateInformationContent</code>.</p>
+<p>Afterwards, every two consecutive symbols compose a block in the fitness landscape. The <em>information content</em> is then derived from the observed probabilities of all blocks that are composed of two different symbols (e.g., a change from positive to negative or from neutral to positive).</p>
+<p>As a further measure, the <em>partial information content</em> is proposed. It is calculated from a modified symbol sequence that omits any neutral changes and repeated symbols. However, the authors (see below) state that the partial information content does not yield much additional information for the increased calculation complexity.</p>
+<p>Below you find an example of the partial information content features, as well as a visualisation.</p>
+<pre><code class="r">library(smoof)
+library(flacco)
+
+## (1) Create data
+X = expand.grid(seq(0, 1, length.out = 50), seq(0, 1, length.out = 50))
+f = smoof::makeBBOBFunction(dimension = 2, fid = 17, iid = 9)
+y = apply(X, 1, f)
+
+## (2) Compute a feature object
+feat.object = createFeatureObject(X = X, y = y, fun = f, blocks = c(10, 10))
+
+## (3) Compute the Information Content Features
+calculateFeatureSet(feat.object, set = &quot;ic&quot;)
+
+## (4) Plot the Information Content
+plotInformationContent(feat.object)
+</code></pre>
+
+<p><img alt="Plot of Information Content" src="../example_info.svg" /></p>
+<p>For a complete overview of the features, please refer to the documentation of <code>calculateFeatureSet</code>.</p>
 <h1 id="literature-reference">Literature Reference</h1>
 <p>Mu&ntilde;oz, M. et al. (2015), &#8220;Exploratory Landscape Analysis of Continuous Space Optimization Problems Using Information Content&#8221;, in IEEE Transactions on Evolutionary Computation (19:1), pp. 74&#8212;87 (<a href="http://dx.doi.org/10.1109/TEVC.2014.2302006">http://dx.doi.org/10.1109/TEVC.2014.2302006</a>).</p>
 
