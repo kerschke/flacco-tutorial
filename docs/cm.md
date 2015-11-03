@@ -3,7 +3,7 @@
 The idea of *cell mapping* is that a continuous search space is partitioned in every dimension and thus achieving a discretization of the original search space into cells. This discretization of the original sample into cells allows the computation of features, which help to characterize the *global structure* or *multimodality* of an optimization problem.
 Based on this approach, three different feature sets can be computed: angle (`"cm_angle"`), convexity (`"cm_conv"`) and gradient homogeneity (`"cm_grad"`).
 
-# Angle
+## Angle
 
 The initial idea of the *angle features* (`"cm_angle"`) is that the best and worst values within the cells might return some insight of the underlying function's landscape. If those two observations lie in opposite directions, it indicates a trend within the cell. In that case the angle between the vectors from cell center to worst value and cell center to best value would be close to 180&deg;.
 The angles of all cells from the grid will then be aggregated using the mean and the standard deviation.
@@ -24,7 +24,7 @@ Since interactions between cells are ignored, i.e. these features are computed l
 (Inspired by Kerschke, P. et al., 2014)
 
 
-# Cell Convexity
+## Cell Convexity
 
 For this feature set (`"cm_conv"`), all possible combinations of three (linearly) neighbouring cells within the grid are computed. Per default, only horizontally and vertically neighbouring cells are considered. By adding `cm_conv.diag = TRUE` to the list of control parameters, diagonally neighbouring cells are considered as well.
 
@@ -43,7 +43,7 @@ Given the function evaluations of the three neighbouring cells, this feature com
 
 (Inspired by Kerschke, P. et al., 2014)
 
-# Gradient Homogeneity
+## Gradient Homogeneity
 
 For every point within a cell's sample, the nearest neighbor is identified and afterwards, the normalized vectors, which are always rotated towards the better points, are computed. Then, all normalized vectors are summed up and divided by the maximal possible vector length (i.e. the number of points). In case of rather randomly distributed objective values, the fraction should be close to zero as this would indicate vectors, which are pointing in different directions. In case of a strong trend the value should be close to one (i.e., all vectors point into the same direction).
 
@@ -60,4 +60,5 @@ Those values are then aggregated over all cells -- again, using the mean and the
 
 (Inspired by Kerschke, P. et al., 2014)
 
+## Literature Reference
 Kerschke, P., Preuss, M., Hernandez, C., Schuetze, O., Sun, J.-Q., Grimme, C., Rudolph, G., Bischl, B., and Trautmann, H. (2014): "Cell Mapping Techniques for Exploratory Landscape Analysis", in: EVOLVE -- A Bridge between Probability, Set Oriented Numbers, and Evolutionary Computation V, pp. 151--131, Springer ([http://dx.doi.org/10.1007/978-3-319-07494-8_9](http://dx.doi.org/10.1007/978-3-319-07494-8_9)).

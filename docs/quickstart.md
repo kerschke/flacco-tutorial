@@ -1,4 +1,4 @@
-# Calculation of a Simple Feature
+## Calculation of a Simple Feature
 
 If you want to compute any of our features, you will first have to create a feature object. This is an object, which stores all the necessary information, such as the input data and control arguments.
 The easiest way to create a feature object is to pass the arguments `X` and `y` to the function `createFeatureObject`, as illustrated in the example below.
@@ -23,7 +23,7 @@ calculateFeatureSet(feat.object, set = "ela_meta")
 
 In order to find out, which feature sets can be computed, one could call the function `listAvailableFeatureSets` or have a look into the documentation of `calculateFeatureSets`. The latter one also contains a list of possible control options of each feature set.
 
-# Calculation of Expensive Features
+## Calculation of Expensive Features
 
 Some feature sets (ELA convexity `"ela_conv"`, ELA curvature `"ela_curv"` and ELA local search `"ela_local"`) need to perform further function evaluations in order to compute the features. In those cases, it is necessary that the function (`fun`) is part of the feature object.
 But don't worry -- if you don't pass the function, `calculateFeatureSet` will complain and give you a hint.
@@ -55,7 +55,7 @@ calculateFeatureSet(feat.object, set = "ela_conv", control = list(ela_conv.nsamp
 A lot of our functions allow to configure certain details on how features should be computed using the `control` list parameter. However, as each function supports different parameters it is advisable to have a look into the corresponding documentation `?calculateFeatureSet`.
 
 
-# Calculation of a Cell Mapping Feature
+## Calculation of a Cell Mapping Feature
 
 Cell mapping features differ from the others in the fact that they convert the continuous search space into a discretized one. This is achieved by dividing the entire search space into a grid with a finite amount of cells (per dimension). Each observation will then be assigned to exactly one cell. Afterwards, each cell will be represented by one (!) of its observations. So far, we provide 3 types of representatives of a cell. For further details, you should have a look into the pages of [cell mapping](cm.md) and [generalized cell mapping](gcm.md).
 
@@ -84,7 +84,7 @@ feat.object = createFeatureObject(X = X, y = y, blocks = 5)
 ``` 
 
 
-# Creating Explanatory Plots
+## Creating Explanatory Plots
 
 In addition to the features, the package provides plots, which visualize the features (or intermediate steps, which lead to the features). For example, the mechanics behind the [generalized cell mapping approach](gcm.md) are sometimes hard to grasp. In those cases, a plot, which visualizes the (two-dimensional) grid and indicates the transition probabilities from any cell to its attractor using proportional arrows, could be helpful. Such a plot can be created with the following commands (the corresponding plot is given below the R code).
 
@@ -129,7 +129,7 @@ plotBarrierTree3D(feat.object, control = ctrl)
 Please note, that the barrier tree features currently only work for problems with a 2D decision space. If you try to compute them for higher dimensional problems, you will receive an error.
 
 
-# Compute all Feature Sets at Once
+## Compute all Feature Sets at Once
 
 In case you have a feature object, which is a discretized version of a 2D input space and which provides the original function as well, you can compute all available feature sets at once -- using `calculateFeatures`.
 

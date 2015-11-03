@@ -1,220 +1,180 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Nearest Better Features - flacco Tutorial</title>
-  
-
-  
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
-  <link href="../custom-r-highlight.css" rel="stylesheet">
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script>
-  <script src="../js/highlight.pack.js"></script>
-  <script src="../js/restrict-hljs.js"></script>
-
-  <style>
-    body {font-size: 90%;}
-    pre, code {font-size: 100%;}
-    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
-  </style> 
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> flacco Tutorial</a>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-      <ul class="current">
-    
         
-        <span>Introduction</span>
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+        <title>Nearest Better Clustering - flacco Tutorial</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link href="../custom-r-highlight.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">flacco Tutorial</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
             
-                <li class="toctree-l1 ">
-                    <a class="" href="../quickstart">Quick Start</a>
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Introduction <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
                     
+                        <li >
+                            <a href="../quickstart">Quick Start</a>
+                        </li>
+                    
+                    </ul>
                 </li>
             
-        
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../ela">Classical Exploratory Landscape Analysis</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../cm">Cell Mapping</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../gcm">Generalized Cell Mapping</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../barriertrees">Barrier Trees</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../dispersion">Dispersion</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../ic">Information Content</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href=".">Nearest Better Clustering</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../misc_features">Miscellaneous</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miscellaneous <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../visualisations">Visualisations</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
 
-    
-        
-        <span>Classical ELA Features</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../ela">Classical Exploratory Landscape Analysis</a>
-                    
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../ic">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
                 </li>
-            
-        
-
-    
-        
-        <span>Cell Mapping Features</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../cm">Cell Mapping</a>
-                    
+                <li >
+                    <a rel="prev" href="../misc_features">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
                 </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../gcm">Generalized Cell Mapping</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../barriertrees">Barrier Trees</a>
-                    
-                </li>
-            
-        
-
-    
-        
-        <span>Extended Features</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../dispersion">Dispersion Features</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../ic">Information Content</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 current">
-                    <a class="current" href=".">Nearest Better Features</a>
-                    
-                        <ul>
+                
+                <li>
+                    <a href="https://github.com/kerschke/flacco">
                         
-                            <li class="toctree-l2"><a href="#nearest-better-features">Nearest Better Features</a></li>
-                            
+                            <i class="fa fa-github"></i>
                         
-                            <li class="toctree-l2"><a href="#literature-reference">Literature Reference</a></li>
-                            
-                        
-                        </ul>
-                    
+                        GitHub
+                    </a>
                 </li>
-            
-        
-
-    
-        
-        <span>Miscellaneous</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../base">Basic Features</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../pca">Principal Component Features</a>
-                    
-                </li>
-            
-        
-
-    
-</ul>
-
-      </div>
-      &nbsp;
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
-        <a href=".."></a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    <li>Nearest Better Features</li>
-      <li class="wy-breadcrumbs-aside">
-        
-          
-            <a href="https://github.com/kerschke/flacco" class="icon icon-github"> Edit on GitHub</a>
-          
-        
-      </li>
-  </ul>
-  <hr/>
+                
+            </ul>
+        </div>
+    </div>
 </div>
-          <div role="main">
-            <div class="section">
-              <h1 id="nearest-better-features">Nearest Better Features</h1>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#nearest-better-features">Nearest Better Features</a></li>
+        
+            <li><a href="#literature-reference">Literature Reference</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="nearest-better-features">Nearest Better Features</h1>
 <p>The <em>Nearest-Better Features</em> &#8212; sometimes also called <em>Nearest-Better Clustering (NBC) Features</em> &#8212; are based on a heuristic, which recognizes single peaks in a multimodal landscape.
 In general, the features are computed on two sets of distances: the distances from each point to its <em>nearest neighbor</em> and the distances from each point to its <em>nearest-better neighbor</em>. Here, the latter one is the closest observation (w.r.t. the reference point) with a better objective value than the reference point.</p>
 <p>Based on these two distance sets, this feature set computes five NBC features. A further motivation of these features can be found, amongst others, in Kerschke et al. (2015).</p>
-<h1 id="literature-reference">Literature Reference</h1>
+<h2 id="literature-reference">Literature Reference</h2>
 <p>Preuss, M. (2012), &#8220;Improved Topological Niching for Real-Valued Global Optimization&#8221;, in Applications of Evolutionary Computation, pp. 386&#8212;395, Springer (<a href="http://dx.doi.org/10.1007/978-3-642-29178-4_39">http://dx.doi.org/10.1007/978-3-642-29178-4_39</a>).</p>
 <p>Kerschke, P. et al. (2015), &#8220;Detecting Funnel Structures by Means of Exploratory Landscape Analysis&#8221;, in Proceedings of the 17th Annual Conference on Genetic and Evolutionary Computation (GECCO &#8216;15), pp. 265-272, ACM (<a href="http://dx.doi.org/10.1145/2739480.2754642">http://dx.doi.org/10.1145/2739480.2754642</a>).</p>
-
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../base" class="btn btn-neutral float-right" title="Basic Features"/>Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../ic" class="btn btn-neutral" title="Information Content"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-    <!-- Copyright etc -->
-    </p>
-  </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-	  
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-<div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-        
-            <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
-        
-      <span><a href="../ic" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="../base" style="color: #fcfcfc">Next &raquo;</a></span>
-    </span>
 </div>
-</body>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/prettify-1.0.min.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script src="../js/restrict-hljs.js"></script>
+    </body>
 </html>

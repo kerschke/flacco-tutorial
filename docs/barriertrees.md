@@ -47,6 +47,6 @@ Based on the barrier trees, features describing the structure of the trees, can 
 
 For a complete overview of the features, please refer to the documentation of `calculateFeatureSet`.
 
-# Literature Reference
+## Literature Reference
 Flamm, C. et al. (2012), "Barrier Trees of Degenerate Landscapes", in Z. Phys. Chem. (216:2), pp. 155--173 ([http://dx.doi.org/10.1524/zpch.2002.216.2.155](http://dx.doi.org/10.1524/zpch.2002.216.2.155)).
 

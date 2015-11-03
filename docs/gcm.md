@@ -15,7 +15,7 @@ feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = "gcm")
 ```
 
-# GCM Terms
+## Example
 
 The following example will create a Generalized Cell Mapping of the 17th BBOB function (Schaffer's F7) based on the nearest prototype approach.
 
@@ -46,7 +46,7 @@ calculateFeatureSet(feat.object, set = "gcm", control = list(gcm.approaches = "n
 
 For a complete overview of the features, please refer to the documentation of `calculateFeatureSet`.
 
-# GCM Terms
+## GCM Terms
 
 **Attractor** / **Periodic cell**:
 
@@ -66,5 +66,5 @@ For a complete overview of the features, please refer to the documentation of `c
 
 - a set of cells, which lead to the same attractor
 
-# Literature Reference
+## Literature Reference
 Kerschke, P. et al. (2014), "Cell Mapping Techniques for Exploratory Landscape Analysis", in EVOLVE-A Bridge between Probability, Set Oriented Numbers, and Evolutionary Computation V, pp. 151--131, Springer ([http://dx.doi.org/10.1007/978-3-319-07494-8_9](http://dx.doi.org/10.1007/978-3-319-07494-8_9)).

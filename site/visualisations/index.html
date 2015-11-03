@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+        <title>Visualisations - flacco Tutorial</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link href="../custom-r-highlight.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">flacco Tutorial</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Introduction <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../quickstart">Quick Start</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../ela">Classical Exploratory Landscape Analysis</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../cm">Cell Mapping</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../gcm">Generalized Cell Mapping</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../barriertrees">Barrier Trees</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../dispersion">Dispersion</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../ic">Information Content</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../nbf">Nearest Better Clustering</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../misc_features">Miscellaneous</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miscellaneous <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li class="active">
+                            <a href=".">Visualisations</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../misc_features">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="prev" >
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://github.com/kerschke/flacco">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#visualisations">Visualisations</a></li>
+        
+            <li><a href="#cell-mapping">Cell Mapping</a></li>
+        
+            <li><a href="#barrier-trees">Barrier Trees</a></li>
+        
+            <li><a href="#information-content">Information Content</a></li>
+        
+            <li><a href="#feature-importance-plot">Feature Importance Plot</a></li>
+        
+            <li><a href="#literature-reference">Literature Reference</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="visualisations">Visualisations</h1>
+<p>In addition to the features themselves, <strong>flacco</strong> provides tools for visualizing the results. This way, one can visualize the <em>Cell Mapping</em> of a feature object, draw the corresponding <em>Barrier Trees</em> or plot the <em>Information Content</em>.
+In addition, the so-called <em>Feature Importance Plot</em> might be useful when analyzing the influence of each feature, e.g. after a feature selection.</p>
+<p>Be aware of the fact that all plots related to <em>Cell Mapping</em> (i.e. <code>plotCellMapping</code>, <code>plotBarrierTree2D</code> and <code>plotBarrierTree3D</code>) can only be executed on 2-dimensional problems!</p>
+<h2 id="cell-mapping">Cell Mapping</h2>
+<p>As introduced in the chapters <a href="../cm">Cell Mapping</a> and <a href="../gcm">Generalized Cell Mapping</a>, the idea of <em>cell mapping</em> is to partition a continuous decision space into a grid of cells and compute features based on this discrete set of observations.
+In order to get a better understanding of this approach, one should visualize the resulting mappings. This can be done by applying <code>plotCellMapping</code> to a <em>feature object</em>.</p>
+<pre><code class="r"># Create a Feature Object
+set.seed(12)
+X = createInitialDesign(n.obs = 1000, dim = 2)
+f = smoof::makeBBOBFunction(2, 15, 1)
+feat.object = createFeatureObject(X = X, fun = f, blocks = c(4, 6))
+
+# Plot the (default) Cell Mapping
+plotCellMapping(feat.object)
+</code></pre>
+
+<p>Per default, this will create a cell mapping which uses the minimum of all observations as prototype (per cell).</p>
+<p><img alt="Cell Mapping - Min" src="../example_cm1.png" /></p>
+<p>In case one rather prefers the average of all observations within a cell or the nearest prototype of a cell, one can adapt the plot accordingly.</p>
+<pre><code class="r">plotCellMapping(feat.object, control = list(gcm.approach = &quot;mean&quot;))
+</code></pre>
+
+<p><img alt="Cell Mapping - Mean" src="../example_cm2.png" /></p>
+<pre><code class="r">plotCellMapping(feat.object, control = list(gcm.approach = &quot;near&quot;))
+</code></pre>
+
+<p><img alt="Cell Mapping - Near" src="../example_cm3.png" /></p>
+<p>A complete overview of the control arguments of the cell mapping plots can be found in the documentation of <code>plotCellMapping</code>.</p>
+<h2 id="barrier-trees">Barrier Trees</h2>
+<p>As mentioned in the <a href="../barriertrees">Barrier Trees</a> chapter, the barrier trees build on top the cell mapping. They represent the local minima (i.e. the attractor cells) as leaves of a tree. Two (or sometimes more) leaves are connected at a <em>saddle point</em>. Those points have to be passed in order to get from one minima to another one &#8212; thus, they are a barrier between them.</p>
+<h3 id="barrier-trees-2d">Barrier Trees 2D</h3>
+<p>In its simplest version, barrier trees can be seen as an additional layer on top of a cell mapping. Let&#8217;s just create the barrier tree using <code>plotBarrierTree2D</code>, which builds a <em>barrier tree</em> on top of the most recent cell mapping &#8212; i.e. the one, which is based on the nearest prototype approach.</p>
+<pre><code class="r">plotBarrierTree2D(feat.object, control = list(gcm.approach = &quot;near&quot;))
+</code></pre>
+
+<p><img alt="Barrier Tree 2D - CM Surface" src="../example_bt2d_1.png" /></p>
+<p>If the colors of the cell mapping are misleading - or just not satisfying - one can also turn off the cell mapping background and use a grey scale instead. In that case cells with lighter colors correspond to observations with higher objective values (and vice versa).</p>
+<pre><code class="r">plotBarrierTree2D(feat.object, control = list(gcm.approach = &quot;near&quot;, bt.cm_surface = FALSE))
+</code></pre>
+
+<p><img alt="Barrier Tree 2D - Classical Surface" src="../example_bt2d_2.png" /></p>
+<h3 id="barrier-trees-3d">Barrier Trees 3D</h3>
+<p>In case one prefers to visualize the <em>barrier trees</em> in three dimensions, one can simply use <code>plotBarrierTree3D</code> as the following example shows.</p>
+<pre><code class="r">plotBarrierTree3D(feat.object, control = list(gcm.approach = &quot;near&quot;))
+</code></pre>
+
+<p><img alt="Barrier Tree 3D - Classical" src="../example_bt3d_1.svg" /></p>
+<p>Again, there exist many alternative control arguments, which one might want to define.</p>
+<pre><code class="r">ctrl = list(gcm.approach = &quot;near&quot;, bt.color_surface = &quot;lightblue&quot;,
+  bt.persp_theta = 135, bt.persp_phi = 35)
+plotBarrierTree3D(feat.object, control = ctrl)
+</code></pre>
+
+<p><img alt="Barrier Tree 3D - Customized" src="../example_bt3d_2.svg" /></p>
+<p>A complete overview of the control arguments of the barrier tree plots can be found in the documentations of <code>plotBarrierTree2D</code> and <code>plotBarrierTree3D</code>.</p>
+<h2 id="information-content">Information Content</h2>
+<p>The <a href="../ic">Information Content</a> approach quantifies the <em>information content</em> of a continuous landscape - i.e. its smoothness, ruggedness, or neutrality - by measuring the changes of the fitness between neighbours (while still accounting for the distance between two neighbours in the continuous space). This is done by travelling from point to point within the landscape and transforming the actual differences into a symbol sequence of positive, negative, or neutral changes.</p>
+<p>This behaviour can also been visualized with a diagnostic plot, using the function <code>plotInformationContent</code>. The default version creates a plot, similar to the one shown in Mu&ntilde;oz et al. (2015).</p>
+<pre><code class="r">plotInformationContent(feat.object)
+</code></pre>
+
+<p><img alt="Information Content - Default" src="../example_info1.svg" /></p>
+<p>Similar to the previous visualizations, it is possible to customize the plot using the control parameters.</p>
+<pre><code class="r">par(mfrow = c(1, 1), mar = c(4, 4, 1, 1))
+ctrl = list(ic.info_sensitivity = 0.3, ic.plot.max_ic.lwd = 4, ic.plot.partial_ic.lwd = 3)
+plotInformationContent(feat.object, control = ctrl)
+</code></pre>
+
+<p>A complete overview of the possible control arguments can be found in the documentation of <code>plotInformationContent</code>.</p>
+<p><img alt="Information Content - Customized" src="../example_info2.svg" /></p>
+<h2 id="feature-importance-plot">Feature Importance Plot</h2>
+<p>The last visualisation technique differs from the remaining plots in a way that it is not directly related to any feature sets. Instead, it is a helpful tool for assessing the influence of a feature based on a nested resampling strategy.</p>
+<p>Let&#8217;s assume one has a data set, which consists of quite a few features. Then, one would likely want to reduce that amount of features, e.g. by performing a feature selection. In the course of that feature selection, one will likely evaluate the found feature set, using a resample strategy, such as a 10-fold cross validation. Now, the model might not use all features in each of the 10 folds. Instead, feature A might only occur 2-3 times, whereas feature B will be considered 9 times. Then, feature B seems to be of higher importance for the model. Such an analysis can be done using the provided function &#8212; <code>plotFeatureImportance</code>.</p>
+<pre><code class="r"># At the beginning, one needs a list of features, e.g. derived during a
+# nested feature selection within mlr (see the following 8 steps):
+library(mlr)
+library(mlbench)
+data(Glass)
+
+# (1) Create a classification task:
+classifTask = makeClassifTask(data = Glass, target = &quot;Type&quot;)
+
+# (2) Define the model (here, a classification tree):
+lrn = makeLearner(cl = &quot;classif.rpart&quot;)
+
+# (3) Define the resampling strategy, which is supposed to be used within 
+# each inner loop of the nested feature selection:
+innerResampling = makeResampleDesc(&quot;Holdout&quot;)
+
+# (4) What kind of feature selection approach should be used? Here, we use a
+# sequential backward strategy, i.e. starting from a model with all features,
+# in each step the feature decreasing the performance measure the least is
+# removed from the model:
+ctrl = makeFeatSelControlSequential(method = &quot;sbs&quot;)
+
+# (5) Wrap the original model (see (2)) in order to allow feature selection:
+wrappedLearner = makeFeatSelWrapper(learner = lrn,
+  resampling = innerResampling, control = ctrl)
+
+# (6) Define a resampling strategy for the outer loop. This is necessary in
+# order to assess whether the selected features depend on the underlying
+# fold:
+outerResampling = makeResampleDesc(method = &quot;CV&quot;, iters = 10L)
+
+# (7) Perform the feature selection:
+featselResult = resample(learner = wrappedLearner, task = classifTask,
+  resampling = outerResampling, models = TRUE)
+
+# (8) Extract the features, which were selected during each iteration of the
+# outer loop (i.e. during each of the 5 folds of the cross-validation):
+featureList = lapply(featselResult$models, 
+  function(mod) getFeatSelResult(mod)$x)
+
+# Now, one can visualise the results:
+plotFeatureImportance(featureList)
+</code></pre>
+
+<p><img alt="Feature Importance Plot - Default" src="../example_feat_imp1.svg" /></p>
+<p>Analoguous to the previous plotting functions, this function also allows to customize the output. For instance, one can rotate the angle of the labels on the x-axis or use a different symbol for the inactive features.</p>
+<pre><code class="r">ctrl = list(featimp.string_angle = 20, featimp.pch_inactive = 8)
+plotFeatureImportance(featureList, control = ctrl)
+</code></pre>
+
+<p><img alt="Feature Importance Plot - Customized" src="../example_feat_imp2.svg" /></p>
+<p>A complete overview of all possible control arguments can be found in the documentation of <code>plotFeatureImportance</code>.</p>
+<h2 id="literature-reference">Literature Reference</h2>
+<p>Flamm, C. et al. (2012), &#8220;Barrier Trees of Degenerate Landscapes&#8221;, in Z. Phys. Chem. (216:2), pp. 155&#8212;173 (<a href="http://dx.doi.org/10.1524/zpch.2002.216.2.155">http://dx.doi.org/10.1524/zpch.2002.216.2.155</a>).</p>
+<p>Kerschke, P., Preuss, M., Hernandez, C., Schuetze, O., Sun, J.-Q., Grimme, C., Rudolph, G., Bischl, B., and Trautmann, H. (2014): &#8220;Cell Mapping Techniques for Exploratory Landscape Analysis&#8221;, in: EVOLVE &#8212; A Bridge between Probability, Set Oriented Numbers, and Evolutionary Computation V, pp. 151&#8212;131, Springer (<a href="http://dx.doi.org/10.1007/978-3-319-07494-8_9">http://dx.doi.org/10.1007/978-3-319-07494-8_9</a>).</p>
+<p>Mu&ntilde;oz, M. et al. (2015), &#8220;Exploratory Landscape Analysis of Continuous Space Optimization Problems Using Information Content&#8221;, in IEEE Transactions on Evolutionary Computation (19:1), pp. 74&#8212;87 (<a href="http://dx.doi.org/10.1109/TEVC.2014.2302006">http://dx.doi.org/10.1109/TEVC.2014.2302006</a>).</p>
+</div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/prettify-1.0.min.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script src="../js/restrict-hljs.js"></script>
+    </body>
+</html>

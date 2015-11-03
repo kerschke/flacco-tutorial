@@ -1,182 +1,174 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Quick Start - flacco Tutorial</title>
-  
-
-  
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
-  <link href="../custom-r-highlight.css" rel="stylesheet">
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script>
-  <script src="../js/highlight.pack.js"></script>
-  <script src="../js/restrict-hljs.js"></script>
-
-  <style>
-    body {font-size: 90%;}
-    pre, code {font-size: 100%;}
-    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
-  </style> 
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> flacco Tutorial</a>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-      <ul class="current">
-    
         
-        <span>Introduction</span>
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+        <title>Quick Start - flacco Tutorial</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link href="../custom-r-highlight.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">flacco Tutorial</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
             
-                <li class="toctree-l1 current">
-                    <a class="current" href=".">Quick Start</a>
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Introduction <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
                     
-                        <ul>
+                        <li class="active">
+                            <a href=".">Quick Start</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../ela">Classical Exploratory Landscape Analysis</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../cm">Cell Mapping</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../gcm">Generalized Cell Mapping</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../barriertrees">Barrier Trees</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../dispersion">Dispersion</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../ic">Information Content</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../nbf">Nearest Better Clustering</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../misc_features">Miscellaneous</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miscellaneous <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../visualisations">Visualisations</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="..">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../ela">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://github.com/kerschke/flacco">
                         
-                            <li class="toctree-l2"><a href="#calculation-of-a-simple-feature">Calculation of a Simple Feature</a></li>
-                            
+                            <i class="fa fa-github"></i>
                         
-                            <li class="toctree-l2"><a href="#calculation-of-expensive-features">Calculation of Expensive Features</a></li>
-                            
-                        
-                            <li class="toctree-l2"><a href="#calculation-of-a-cell-mapping-feature">Calculation of a Cell Mapping Feature</a></li>
-                            
-                        
-                            <li class="toctree-l2"><a href="#creating-explanatory-plots">Creating Explanatory Plots</a></li>
-                            
-                        
-                            <li class="toctree-l2"><a href="#compute-all-feature-sets-at-once">Compute all Feature Sets at Once</a></li>
-                            
-                        
-                        </ul>
-                    
+                        GitHub
+                    </a>
                 </li>
-            
-        
-
-    
-        
-        <span>Classical ELA Features</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../ela">Classical Exploratory Landscape Analysis</a>
-                    
-                </li>
-            
-        
-
-    
-        
-        <span>Cell Mapping Features</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../cm">Cell Mapping</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../gcm">Generalized Cell Mapping</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../barriertrees">Barrier Trees</a>
-                    
-                </li>
-            
-        
-
-    
-        
-        <span>Extended Features</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../dispersion">Dispersion Features</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../ic">Information Content</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../nbf">Nearest Better Features</a>
-                    
-                </li>
-            
-        
-
-    
-        
-        <span>Miscellaneous</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../base">Basic Features</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../pca">Principal Component Features</a>
-                    
-                </li>
-            
-        
-
-    
-</ul>
-
-      </div>
-      &nbsp;
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
-        <a href=".."></a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    <li>Quick Start</li>
-      <li class="wy-breadcrumbs-aside">
-        
-          
-            <a href="https://github.com/kerschke/flacco" class="icon icon-github"> Edit on GitHub</a>
-          
-        
-      </li>
-  </ul>
-  <hr/>
+                
+            </ul>
+        </div>
+    </div>
 </div>
-          <div role="main">
-            <div class="section">
-              <h1 id="calculation-of-a-simple-feature">Calculation of a Simple Feature</h1>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#calculation-of-a-simple-feature">Calculation of a Simple Feature</a></li>
+        
+    
+        <li class="main "><a href="#calculation-of-expensive-features">Calculation of Expensive Features</a></li>
+        
+    
+        <li class="main "><a href="#calculation-of-a-cell-mapping-feature">Calculation of a Cell Mapping Feature</a></li>
+        
+    
+        <li class="main "><a href="#creating-explanatory-plots">Creating Explanatory Plots</a></li>
+        
+    
+        <li class="main "><a href="#compute-all-feature-sets-at-once">Compute all Feature Sets at Once</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h2 id="calculation-of-a-simple-feature">Calculation of a Simple Feature</h2>
 <p>If you want to compute any of our features, you will first have to create a feature object. This is an object, which stores all the necessary information, such as the input data and control arguments.
 The easiest way to create a feature object is to pass the arguments <code>X</code> and <code>y</code> to the function <code>createFeatureObject</code>, as illustrated in the example below.</p>
 <pre><code class="r">library(flacco)
@@ -197,7 +189,7 @@ calculateFeatureSet(feat.object, set = &quot;ela_meta&quot;)
 </code></pre>
 
 <p>In order to find out, which feature sets can be computed, one could call the function <code>listAvailableFeatureSets</code> or have a look into the documentation of <code>calculateFeatureSets</code>. The latter one also contains a list of possible control options of each feature set.</p>
-<h1 id="calculation-of-expensive-features">Calculation of Expensive Features</h1>
+<h2 id="calculation-of-expensive-features">Calculation of Expensive Features</h2>
 <p>Some feature sets (ELA convexity <code>"ela_conv"</code>, ELA curvature <code>"ela_curv"</code> and ELA local search <code>"ela_local"</code>) need to perform further function evaluations in order to compute the features. In those cases, it is necessary that the function (<code>fun</code>) is part of the feature object.
 But don&#8217;t worry &#8212; if you don&#8217;t pass the function, <code>calculateFeatureSet</code> will complain and give you a hint.</p>
 <p>Note, that it is also possible to pass only <code>X</code> and <code>fun</code> to <code>createFeatureObject</code>, i.e. you do not have to pass <code>y</code>. In that case, the objective values will be computed by <code>createFeatureObject</code>!</p>
@@ -221,7 +213,7 @@ calculateFeatureSet(feat.object, set = &quot;ela_conv&quot;, control = list(ela_
 </code></pre>
 
 <p>A lot of our functions allow to configure certain details on how features should be computed using the <code>control</code> list parameter. However, as each function supports different parameters it is advisable to have a look into the corresponding documentation <code>?calculateFeatureSet</code>.</p>
-<h1 id="calculation-of-a-cell-mapping-feature">Calculation of a Cell Mapping Feature</h1>
+<h2 id="calculation-of-a-cell-mapping-feature">Calculation of a Cell Mapping Feature</h2>
 <p>Cell mapping features differ from the others in the fact that they convert the continuous search space into a discretized one. This is achieved by dividing the entire search space into a grid with a finite amount of cells (per dimension). Each observation will then be assigned to exactly one cell. Afterwards, each cell will be represented by one (!) of its observations. So far, we provide 3 types of representatives of a cell. For further details, you should have a look into the pages of <a href="../cm">cell mapping</a> and <a href="../gcm">generalized cell mapping</a>.</p>
 <p>In order to define the grid, you need to specify the number of cells/blocks per dimension when creating a <code>FeatureObject</code>. If you don&#8217;t provide them, the attempt of computing a cell mapping feature will abort with an error.</p>
 <pre><code class="r">## (1) Create data
@@ -243,7 +235,7 @@ calculateFeatureSet(feat.object, set = &quot;cm_grad&quot;)
 feat.object = createFeatureObject(X = X, y = y, blocks = 5)
 </code></pre>
 
-<h1 id="creating-explanatory-plots">Creating Explanatory Plots</h1>
+<h2 id="creating-explanatory-plots">Creating Explanatory Plots</h2>
 <p>In addition to the features, the package provides plots, which visualize the features (or intermediate steps, which lead to the features). For example, the mechanics behind the <a href="../gcm">generalized cell mapping approach</a> are sometimes hard to grasp. In those cases, a plot, which visualizes the (two-dimensional) grid and indicates the transition probabilities from any cell to its attractor using proportional arrows, could be helpful. Such a plot can be created with the following commands (the corresponding plot is given below the R code).</p>
 <pre><code class="r">library(smoof)
 library(flacco)
@@ -277,7 +269,7 @@ plotBarrierTree3D(feat.object, control = ctrl)
 <p><img alt="2D Barrier Tree" src="../example_bt_2d.svg" /></p>
 <p><img alt="3D Barrier Tree" src="../example_bt_3d.svg" /></p>
 <p>Please note, that the barrier tree features currently only work for problems with a 2D decision space. If you try to compute them for higher dimensional problems, you will receive an error.</p>
-<h1 id="compute-all-feature-sets-at-once">Compute all Feature Sets at Once</h1>
+<h2 id="compute-all-feature-sets-at-once">Compute all Feature Sets at Once</h2>
 <p>In case you have a feature object, which is a discretized version of a 2D input space and which provides the original function as well, you can compute all available feature sets at once &#8212; using <code>calculateFeatures</code>.</p>
 <pre><code class="r">X = createInitialDesign(n.obs = 1000, dim = 2)
 f = function(x) sum(x^3 * sin(x))
@@ -285,47 +277,16 @@ feat.object = createFeatureObject(X = X, fun = f, blocks = 5)
 features = calculateFeatures(feat.object)
 </code></pre>
 
-
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../ela" class="btn btn-neutral float-right" title="Classical Exploratory Landscape Analysis"/>Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href=".." class="btn btn-neutral" title="flacco"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-    <!-- Copyright etc -->
-    </p>
-  </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-	  
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-<div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-        
-            <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
-        
-      <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="../ela" style="color: #fcfcfc">Next &raquo;</a></span>
-    </span>
 </div>
-</body>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/prettify-1.0.min.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script src="../js/restrict-hljs.js"></script>
+    </body>
 </html>
