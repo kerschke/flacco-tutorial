@@ -11,7 +11,7 @@ In order to get a better understanding of this approach, one should visualize th
 ```{r}
 # Create a Feature Object
 set.seed(12)
-X = createInitialDesign(n.obs = 1000, dim = 2)
+X = createInitialSample(n.obs = 1000, dim = 2)
 f = smoof::makeBBOBFunction(2, 15, 1)
 feat.object = createFeatureObject(X = X, fun = f, blocks = c(4, 6))
 

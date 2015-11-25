@@ -173,9 +173,9 @@
 The easiest way to create a feature object is to pass the arguments <code>X</code> and <code>y</code> to the function <code>createFeatureObject</code>, as illustrated in the example below.</p>
 <pre><code class="r">library(flacco)
 
-## (1) Generate some example data, i.e. create an initial design 'X' consisting
+## (1) Generate some example data, i.e. create an initial sample 'X' consisting
 ## of 500 (2D) observations and compute the corresponding objective values 'y':
-X = createInitialDesign(n.obs = 500, dim = 2)
+X = createInitialSample(n.obs = 500, dim = 2)
 y = apply(X, 1, function(x) sum(sin(x) * x^2 + (x - 0.5)^3))
 
 ## (2) Create the corresponding feature object:
@@ -194,7 +194,7 @@ calculateFeatureSet(feat.object, set = &quot;ela_meta&quot;)
 But don&#8217;t worry &#8212; if you don&#8217;t pass the function, <code>calculateFeatureSet</code> will complain and give you a hint.</p>
 <p>Note, that it is also possible to pass only <code>X</code> and <code>fun</code> to <code>createFeatureObject</code>, i.e. you do not have to pass <code>y</code>. In that case, the objective values will be computed by <code>createFeatureObject</code>!</p>
 <pre><code class="r">## (1) Create data
-X = createInitialDesign(n.obs = 2000, dim = 5)
+X = createInitialSample(n.obs = 2000, dim = 5)
 
 ## (2) Compute the feature object (note that we do not set any objective values)
 feat.object = createFeatureObject(X = X, fun = function(x) sum(x^2))
@@ -217,7 +217,7 @@ calculateFeatureSet(feat.object, set = &quot;ela_conv&quot;, control = list(ela_
 <p>Cell mapping features differ from the others in the fact that they convert the continuous search space into a discretized one. This is achieved by dividing the entire search space into a grid with a finite amount of cells (per dimension). Each observation will then be assigned to exactly one cell. Afterwards, each cell will be represented by one (!) of its observations. So far, we provide 3 types of representatives of a cell. For further details, you should have a look into the pages of <a href="../cm">cell mapping</a> and <a href="../gcm">generalized cell mapping</a>.</p>
 <p>In order to define the grid, you need to specify the number of cells/blocks per dimension when creating a <code>FeatureObject</code>. If you don&#8217;t provide them, the attempt of computing a cell mapping feature will abort with an error.</p>
 <pre><code class="r">## (1) Create data
-X = createInitialDesign(n.obs = 2000, dim = 5)
+X = createInitialSample(n.obs = 2000, dim = 5)
 y = rowSums(X^2)
 
 ## (2) Compute a feature object
@@ -271,7 +271,7 @@ plotBarrierTree3D(feat.object, control = ctrl)
 <p>Please note, that the barrier tree features currently only work for problems with a 2D decision space. If you try to compute them for higher dimensional problems, you will receive an error.</p>
 <h2 id="compute-all-feature-sets-at-once">Compute all Feature Sets at Once</h2>
 <p>In case you have a feature object, which is a discretized version of a 2D input space and which provides the original function as well, you can compute all available feature sets at once &#8212; using <code>calculateFeatures</code>.</p>
-<pre><code class="r">X = createInitialDesign(n.obs = 1000, dim = 2)
+<pre><code class="r">X = createInitialSample(n.obs = 1000, dim = 2)
 f = function(x) sum(x^3 * sin(x))
 feat.object = createFeatureObject(X = X, fun = f, blocks = 5)
 features = calculateFeatures(feat.object)

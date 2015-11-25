@@ -170,7 +170,7 @@ Based on this approach, three different feature sets can be computed: angle (<co
 <h2 id="angle">Angle</h2>
 <p>The initial idea of the <em>angle features</em> (<code>"cm_angle"</code>) is that the best and worst values within the cells might return some insight of the underlying function&#8217;s landscape. If those two observations lie in opposite directions, it indicates a trend within the cell. In that case the angle between the vectors from cell center to worst value and cell center to best value would be close to 180&deg;.
 The angles of all cells from the grid will then be aggregated using the mean and the standard deviation.</p>
-<pre><code class="r">X = createInitialDesign(n.obs = 1200, dim = 3)
+<pre><code class="r">X = createInitialSample(n.obs = 1200, dim = 3)
 y = rowSums(X^2)
 feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = &quot;cm_angle&quot;)
@@ -182,7 +182,7 @@ calculateFeatureSet(feat.object, set = &quot;cm_angle&quot;)
 <p>(Inspired by Kerschke, P. et al., 2014)</p>
 <h2 id="cell-convexity">Cell Convexity</h2>
 <p>For this feature set (<code>"cm_conv"</code>), all possible combinations of three (linearly) neighbouring cells within the grid are computed. Per default, only horizontally and vertically neighbouring cells are considered. By adding <code>cm_conv.diag = TRUE</code> to the list of control parameters, diagonally neighbouring cells are considered as well.</p>
-<pre><code class="r">X = createInitialDesign(n.obs = 1200, dim = 3)
+<pre><code class="r">X = createInitialSample(n.obs = 1200, dim = 3)
 y = rowSums(X^2)
 feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = &quot;cm_conv&quot;)
@@ -194,7 +194,7 @@ calculateFeatureSet(feat.object, set = &quot;cm_conv&quot;)
 <p>(Inspired by Kerschke, P. et al., 2014)</p>
 <h2 id="gradient-homogeneity">Gradient Homogeneity</h2>
 <p>For every point within a cell&#8217;s sample, the nearest neighbor is identified and afterwards, the normalized vectors, which are always rotated towards the better points, are computed. Then, all normalized vectors are summed up and divided by the maximal possible vector length (i.e. the number of points). In case of rather randomly distributed objective values, the fraction should be close to zero as this would indicate vectors, which are pointing in different directions. In case of a strong trend the value should be close to one (i.e., all vectors point into the same direction).</p>
-<pre><code class="r">X = createInitialDesign(n.obs = 1200, dim = 3)
+<pre><code class="r">X = createInitialSample(n.obs = 1200, dim = 3)
 y = rowSums(X^2)
 feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = &quot;cm_grad&quot;)

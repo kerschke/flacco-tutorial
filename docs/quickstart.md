@@ -6,9 +6,9 @@ The easiest way to create a feature object is to pass the arguments `X` and `y` 
 ```{r}
 library(flacco)
 
-## (1) Generate some example data, i.e. create an initial design 'X' consisting
+## (1) Generate some example data, i.e. create an initial sample 'X' consisting
 ## of 500 (2D) observations and compute the corresponding objective values 'y':
-X = createInitialDesign(n.obs = 500, dim = 2)
+X = createInitialSample(n.obs = 500, dim = 2)
 y = apply(X, 1, function(x) sum(sin(x) * x^2 + (x - 0.5)^3))
 
 ## (2) Create the corresponding feature object:
@@ -32,7 +32,7 @@ Note, that it is also possible to pass only `X` and `fun` to `createFeatureObjec
 
 ```{r}
 ## (1) Create data
-X = createInitialDesign(n.obs = 2000, dim = 5)
+X = createInitialSample(n.obs = 2000, dim = 5)
 
 ## (2) Compute the feature object (note that we do not set any objective values)
 feat.object = createFeatureObject(X = X, fun = function(x) sum(x^2))
@@ -63,7 +63,7 @@ In order to define the grid, you need to specify the number of cells/blocks per 
 
 ```{r}
 ## (1) Create data
-X = createInitialDesign(n.obs = 2000, dim = 5)
+X = createInitialSample(n.obs = 2000, dim = 5)
 y = rowSums(X^2)
 
 ## (2) Compute a feature object
@@ -134,7 +134,7 @@ Please note, that the barrier tree features currently only work for problems wit
 In case you have a feature object, which is a discretized version of a 2D input space and which provides the original function as well, you can compute all available feature sets at once -- using `calculateFeatures`.
 
 ```{r}
-X = createInitialDesign(n.obs = 1000, dim = 2)
+X = createInitialSample(n.obs = 1000, dim = 2)
 f = function(x) sum(x^3 * sin(x))
 feat.object = createFeatureObject(X = X, fun = f, blocks = 5)
 features = calculateFeatures(feat.object)

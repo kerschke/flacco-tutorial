@@ -9,7 +9,7 @@ The initial idea of the *angle features* (`"cm_angle"`) is that the best and wor
 The angles of all cells from the grid will then be aggregated using the mean and the standard deviation.
 
 ```{r}
-X = createInitialDesign(n.obs = 1200, dim = 3)
+X = createInitialSample(n.obs = 1200, dim = 3)
 y = rowSums(X^2)
 feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = "cm_angle")
@@ -29,7 +29,7 @@ Since interactions between cells are ignored, i.e. these features are computed l
 For this feature set (`"cm_conv"`), all possible combinations of three (linearly) neighbouring cells within the grid are computed. Per default, only horizontally and vertically neighbouring cells are considered. By adding `cm_conv.diag = TRUE` to the list of control parameters, diagonally neighbouring cells are considered as well.
 
 ```{r}
-X = createInitialDesign(n.obs = 1200, dim = 3)
+X = createInitialSample(n.obs = 1200, dim = 3)
 y = rowSums(X^2)
 feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = "cm_conv")
@@ -48,7 +48,7 @@ Given the function evaluations of the three neighbouring cells, this feature com
 For every point within a cell's sample, the nearest neighbor is identified and afterwards, the normalized vectors, which are always rotated towards the better points, are computed. Then, all normalized vectors are summed up and divided by the maximal possible vector length (i.e. the number of points). In case of rather randomly distributed objective values, the fraction should be close to zero as this would indicate vectors, which are pointing in different directions. In case of a strong trend the value should be close to one (i.e., all vectors point into the same direction).
 
 ```{r}
-X = createInitialDesign(n.obs = 1200, dim = 3)
+X = createInitialSample(n.obs = 1200, dim = 3)
 y = rowSums(X^2)
 feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = "cm_grad")

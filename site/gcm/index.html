@@ -168,7 +168,7 @@ However, in contrast to the previous section, the GCM approach is based on trans
 <p>For each cell, a representative objective function value is chosen. Consequently, the cell mapping abstracts from the original function evaluations and reduces the number of values to (at most) one per cell.</p>
 <p>Three approaches are used for finding the representative value for each cell: minimum (<code>"min"</code>), average (<code>"mean"</code>), and nearest prototype (<code>"near"</code>). In the <code>"near"</code> approach, the representative value is the one that is closest to a cell&#8217;s center. In the <code>"mean"</code> approach, all values that are located in one cell are averaged to create the representative value of that cell. For the <code>"min"</code> approach, the minimum of one cell&#8217;s values is used as the representative value.
 Note that in case of an empty cell, only the <code>"near"</code> approach is able to find a representative value for that cell.</p>
-<pre><code class="r">X = createInitialDesign(n.obs = 1200, dim = 3)
+<pre><code class="r">X = createInitialSample(n.obs = 1200, dim = 3)
 y = rowSums(X^2)
 feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = &quot;gcm&quot;)

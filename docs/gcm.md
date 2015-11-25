@@ -9,7 +9,7 @@ Three approaches are used for finding the representative value for each cell: mi
 Note that in case of an empty cell, only the `"near"` approach is able to find a representative value for that cell.
 
 ```{r}
-X = createInitialDesign(n.obs = 1200, dim = 3)
+X = createInitialSample(n.obs = 1200, dim = 3)
 y = rowSums(X^2)
 feat.object = createFeatureObject(X = X, y = y, blocks = c(4, 6, 3))
 calculateFeatureSet(feat.object, set = "gcm")

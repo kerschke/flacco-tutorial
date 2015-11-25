@@ -175,7 +175,7 @@ In addition, the so-called <em>Feature Importance Plot</em> might be useful when
 In order to get a better understanding of this approach, one should visualize the resulting mappings. This can be done by applying <code>plotCellMapping</code> to a <em>feature object</em>.</p>
 <pre><code class="r"># Create a Feature Object
 set.seed(12)
-X = createInitialDesign(n.obs = 1000, dim = 2)
+X = createInitialSample(n.obs = 1000, dim = 2)
 f = smoof::makeBBOBFunction(2, 15, 1)
 feat.object = createFeatureObject(X = X, fun = f, blocks = c(4, 6))
 

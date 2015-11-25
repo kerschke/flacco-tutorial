@@ -1,6 +1,6 @@
 # Dispersion Features
 
-The dispersion features compare the dispersion, i.e. the (aggregated) distances, of all points in the initial design with the dispersion among the best points design. Per default, this set of "best points" is based on the 2%, 5% and 10% quantile of the objectives.
+The dispersion features compare the dispersion, i.e. the (aggregated) pairwise distances, of all points in the initial design with the dispersion among the best points in the initial design. Per default, this set of "best points" is based on the 2%, 5% and 10% quantile of the objectives.
 Those dispersions are then compared based on the ratio as well as on the difference.
 
 For a complete overview of the features, please refer to the documentation of `calculateFeatureSet`.
