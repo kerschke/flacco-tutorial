@@ -1,7 +1,7 @@
 ## Calculation of a Simple Feature
 
 If you want to compute any of our features, you will first have to create a feature object. This is an object, which stores all the necessary information, such as the input data and control arguments.
-The easiest way to create a feature object is to pass the arguments `X` and `y` to the function `createFeatureObject`, as illustrated in the example below.
+The easiest way to create a feature object is to pass the arguments `X` and `y` to the function `createFeatureObject()`, as illustrated in the example below.
 
 ```{r}
 library(flacco)
@@ -21,14 +21,14 @@ print(feat.object)
 calculateFeatureSet(feat.object, set = "ela_meta")
 ```
 
-In order to find out, which feature sets can be computed, one could call the function `listAvailableFeatureSets` or have a look into the documentation of `calculateFeatureSets`. The latter one also contains a list of possible control options of each feature set.
+In order to find out, which feature sets can be computed, one could call the function `listAvailableFeatureSets()` or have a look into the documentation of `?calculateFeatureSets`. The latter one also contains a list of possible control options of each feature set.
 
 ## Calculation of Expensive Features
 
 Some feature sets (ELA convexity `"ela_conv"`, ELA curvature `"ela_curv"` and ELA local search `"ela_local"`) need to perform further function evaluations in order to compute the features. In those cases, it is necessary that the function (`fun`) is part of the feature object.
-But don't worry -- if you don't pass the function, `calculateFeatureSet` will complain and give you a hint.
+But don't worry -- if you don't pass the function, `calculateFeatureSet()` will complain and give you a hint.
 
-Note, that it is also possible to pass only `X` and `fun` to `createFeatureObject`, i.e. you do not have to pass `y`. In that case, the objective values will be computed by `createFeatureObject`!
+Note, that it is also possible to pass only `X` and `fun` to `createFeatureObject()`, i.e. you do not have to pass `y`. In that case, the objective values will be computed by `createFeatureObject()`!
 
 ```{r}
 ## (1) Create data
@@ -44,7 +44,7 @@ print(feat.object)
 calculateFeatureSet(feat.object, set = "ela_conv")
 ```
 
-Usually, you find more information on the parameters and thus on the exact number of additional function evaluations within the documentation of `calculateFeatureSet`. The following example shows you, how you could control the size of the generated sample:
+Usually, you find more information on the parameters and thus on the exact number of additional function evaluations within the documentation of `calculateFeatureSet()`. The following example shows you, how you could control the size of the generated sample:
 
 ```{r}
 ## Calculate the convexity features using a sample of size 500, 
@@ -52,7 +52,7 @@ Usually, you find more information on the parameters and thus on the exact numbe
 calculateFeatureSet(feat.object, set = "ela_conv", control = list(ela_conv.nsample = 500))
 ```
 
-A lot of our functions allow to configure certain details on how features should be computed using the `control` list parameter. However, as each function supports different parameters it is advisable to have a look into the corresponding documentation `?calculateFeatureSet`.
+A lot of our functions allow to configure certain details on how features should be computed using the `control` parameter. Here you need to pass a `list` containing the desired controll parameters as can be seen in the previous code snippet. However, as each function supports different parameters it is advisable to have a look into the corresponding documentation (`?calculateFeatureSet`).
 
 
 ## Calculation of a Cell Mapping Feature
@@ -81,8 +81,18 @@ The above example splits the data into 10 blocks in the first, 5 blocks in the s
 ```{r}
 ## Compute the feature object
 feat.object = createFeatureObject(X = X, y = y, blocks = 5)
-``` 
+```
 
+## Compute all Feature Sets at Once
+
+In case you have a feature object, which is a discretized version of a 2D input space and which provides the original function as well, you can compute all available feature sets at once -- using `calculateFeatures()`.
+
+```{r}
+X = createInitialSample(n.obs = 1000, dim = 2)
+f = function(x) sum(x^3 * sin(x))
+feat.object = createFeatureObject(X = X, fun = f, blocks = 5)
+features = calculateFeatures(feat.object)
+```
 
 ## Creating Explanatory Plots
 
@@ -129,13 +139,3 @@ plotBarrierTree3D(feat.object, control = ctrl)
 Please note, that the barrier tree features currently only work for problems with a 2D decision space. If you try to compute them for higher dimensional problems, you will receive an error.
 
 
-## Compute all Feature Sets at Once
-
-In case you have a feature object, which is a discretized version of a 2D input space and which provides the original function as well, you can compute all available feature sets at once -- using `calculateFeatures`.
-
-```{r}
-X = createInitialSample(n.obs = 1000, dim = 2)
-f = function(x) sum(x^3 * sin(x))
-feat.object = createFeatureObject(X = X, fun = f, blocks = 5)
-features = calculateFeatures(feat.object)
-```
