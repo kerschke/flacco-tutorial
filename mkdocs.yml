@@ -1,16 +1,58 @@
-site_name: flacco Tutorial
-repo_url: https://github.com/kerschke/flacco
-pages:
-- [index.md, "flacco"]
-- [quickstart.md, "Introduction", "Quick Start"]
-- [ela.md, "Features", "Classical Exploratory Landscape Analysis"]
-- [cm.md, "Features", "Cell Mapping"]
-- [gcm.md, "Features", "Generalized Cell Mapping"]
-- [barriertrees.md, "Features", "Barrier Trees"]
-- [dispersion.md, "Features", "Dispersion"]
-- [ic.md, "Features", "Information Content"]
-- [nbf.md, "Features", "Nearest Better Clustering"]
-- [misc_features.md, "Features", "Miscellaneous"]
-- [visualisations.md, "Miscellaneous", "Visualisations"]
+site_name: flaccoTutorial
+# repo_url: https://github.com/kerschke/flacco
+nav: 
+# index.md is automatically deployed under the home tab implicitly this yields the following line
+# "flaccoTutorial": index.md
+    - "Introduction" :
+       - "Quick Start R" : quickstart.md
+       - "Quick Start GUI" : quickstart_gui.md
+    - "Features" :
+       - "Features Overview" : feat.md
+       - "Classical Exploratory Landscape Analysis" : ela.md
+       - "Cell Mapping" : cm.md
+       - "Generalized Cell Mapping" : gcm.md
+       - "Barrier Trees" : barriertrees.md
+       - "Dispersion" : dispersion.md
+       - "Information Content" : ic.md
+       - "Nearest Better Clustering" : nbf.md
+       - "Miscellaneous" : misc_features.md
+    - "Visualisations" : 
+       - "Visualisations Overview": viz.md
+       - "Cell Mapping": viz_cm.md
+       - "Barrier Trees": viz_bt.md
+       - "Information Content": viz_ic.md
+       - "Feature Importance Plot": viz_fip.md
+# OLD ###       
+# pages:
+# - [index.md, "flacco"]
+# - [quickstart.md, "Introduction", "Quick Start"]
+# - [ela.md, "Features", "Classical Exploratory Landscape Analysis"]
+# - [cm.md, "Features", "Cell Mapping"]
+# - [gcm.md, "Features", "Generalized Cell Mapping"]
+# - [barriertrees.md, "Features", "Barrier Trees"]
+# - [dispersion.md, "Features", "Dispersion"]
+# - [ic.md, "Features", "Information Content"]
+# - [nbf.md, "Features", "Nearest Better Clustering"]
+# - [misc_features.md, "Features", "Miscellaneous"]
+# - [visualisations.md, "Miscellaneous", "Visualisations"]
+       
+markdown_extensions:
+    - smarty
+# OLD ###
+# markdown_extensions: [smartypants]
+
+# was missing before
+extra_css: [custom-r-highlight.css]
+
+# OLD ###
+# changed appearance since original build
 theme: spacelab
-markdown_extensions: [smartypants]
+
+# includes code snipet copy button (https://squidfunk.github.io/mkdocs-material/)
+#theme:
+#     name: material
+
+
+
+
+
